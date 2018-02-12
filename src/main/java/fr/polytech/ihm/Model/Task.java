@@ -113,4 +113,8 @@ public class Task {
     public void upvoteTask(){
         this.upvoteProperty().setValue(this.upvote.getValue()+1);
     }
+
+    public void resolveTask(){
+        this.resolved.setValue(true);
+    }
 }
