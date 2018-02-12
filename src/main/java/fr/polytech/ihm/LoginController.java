@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class LoginController {
@@ -23,6 +24,9 @@ public class LoginController {
 
     @FXML
     private Button login;
+
+    @FXML
+    private Text errorText;
 
     @FXML
     public void initialize() {
@@ -42,6 +46,7 @@ public class LoginController {
         else {
             username.setText("");
             password.setText("");
+            errorText.setText("Username ou mot de passe incorrect");
         }
     }
 
