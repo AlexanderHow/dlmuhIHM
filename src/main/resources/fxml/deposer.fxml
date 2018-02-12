@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.polytech.ihm.DeposerController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.polytech.ihm.DeposerController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -84,8 +84,8 @@
                   </TextArea>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                      <children>
-                        <Button fx:id="clearButton" mnemonicParsing="false" text="Effacer" />
-                        <Button fx:id="exeButton" mnemonicParsing="false" text="Déposer/Sauvegarder">
+                        <Button fx:id="clearButton" mnemonicParsing="false" onMouseClicked="#delete" text="Effacer" />
+                        <Button fx:id="exeButton" mnemonicParsing="false" onMouseClicked="#submit" text="Déposer/Sauvegarder">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>

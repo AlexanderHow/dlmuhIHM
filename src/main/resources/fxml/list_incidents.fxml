@@ -15,7 +15,9 @@
                         <HBox alignment="CENTER" fillHeight="false" spacing="4.0" BorderPane.alignment="CENTER">
                             <children>
                                 <TextField prefWidth="200.0" text="Search"/>
-                                <ComboBox fx:id="categoryIncident" prefWidth="150.0" promptText="Category"/>
+                                <ComboBox fx:id="categoryIncident" prefWidth="150.0" promptText="Categorie"/>
+                                <ComboBox fx:id="locationIncident" prefWidth="150.0" promptText="Localisation"/>
+                                <ComboBox fx:id="resolutionIncident" prefWidth="150.0" promptText="Résolution"/>
                             </children>
                         </HBox>
                     </left>
@@ -73,12 +75,12 @@
                                                         <VBox alignment="CENTER_LEFT" minHeight="150.0" minWidth="200.0"
                                                               spacing="16.0">
                                                             <children>
-                                                                <Label fx:id="incidentTitle4"
+                                                                <Label fx:id="incidentTitle"
                                                                        text="Titre de l'incident"/>
-                                                                <Label fx:id="incidentLocalisation4"
+                                                                <Label fx:id="incidentLocalisation"
                                                                        text="Localisation de l'incident"/>
-                                                                <Label fx:id="incidentDate4" text="Date de l'incident"/>
-                                                                <Label fx:id="incidentDescription4"
+                                                                <Label fx:id="incidentDate" text="Date de l'incident"/>
+                                                                <Label fx:id="incidentDescription"
                                                                        text="Description de l'incident"/>
                                                             </children>
                                                             <padding>
@@ -87,7 +89,7 @@
                                                         </VBox>
                                                         <AnchorPane GridPane.columnIndex="1">
                                                             <children>
-                                                                <Label fx:id="importanceIncident4"
+                                                                <Label fx:id="importanceIncident"
                                                                        layoutX="1.0999755859375" layoutY="8.0"
                                                                        text="importance" textFill="#bf2323"
                                                                        AnchorPane.topAnchor="8.0"/>
@@ -95,9 +97,9 @@
                                                                       layoutX="1.0999755859375" prefWidth="75.0"
                                                                       AnchorPane.bottomAnchor="0.0">
                                                                     <children>
-                                                                        <Label fx:id="incidentScore4" text="score"
+                                                                        <Label fx:id="incidentScore" text="score"
                                                                                textFill="#49bc3c"/>
-                                                                        <Button fx:id="upvoteIncidentButton4"
+                                                                        <Button fx:id="upvoteIncidentButton"
                                                                                 mnemonicParsing="false"
                                                                                 onAction="#upvote" text="Upvote">
                                                                             <VBox.margin>
