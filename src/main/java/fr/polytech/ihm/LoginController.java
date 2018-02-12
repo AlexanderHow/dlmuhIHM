@@ -1,5 +1,6 @@
 package fr.polytech.ihm;
 
+import fr.polytech.ihm.Model.LoginCheck;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -27,18 +28,28 @@ public class LoginController {
     }
 
     public void onClick(MouseEvent mouseEvent) throws Exception {
-        String fxmlFile = "/fxml/hello.fxml";
+        LoginCheck loginCheck = new LoginCheck(username.getText(), password.getText());
+        if(loginCheck.isAdmin())
+            this.loadView("/fxml/list_incidents.fxml");
+        if(loginCheck.isValid())
+            this.loadView("/fxml/list_incidents.fxml");
+        else {
+            username.setText("");
+            password.setText("");
+        }
+    }
+
+    private void loadView(String name) throws Exception{
+        String fxmlFile = name;
         FXMLLoader loader = new FXMLLoader();
         try {
             Stage stage = (Stage) login.getScene().getWindow();
             Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
             Scene scene = new Scene(rootNode, 1200, 700);
-            scene.getStylesheets().add("/styles/styles.css");
-
             stage.setTitle("Hello JavaFX and Maven");
             stage.setScene(scene);
             stage.show();
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
