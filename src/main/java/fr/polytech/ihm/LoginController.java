@@ -32,7 +32,7 @@ public class LoginController {
         try {
             Stage stage = (Stage) login.getScene().getWindow();
             Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
-            Scene scene = new Scene(rootNode, 400, 200);
+            Scene scene = new Scene(rootNode, 1200, 700);
             scene.getStylesheets().add("/styles/styles.css");
 
             stage.setTitle("Hello JavaFX and Maven");
