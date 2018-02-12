@@ -123,17 +123,17 @@ public class ListIncident {
     private Button addIncidentButton;
 
     @FXML
-    void accessUserData(ActionEvent event) {
+    public void accessUserData(ActionEvent event) {
 
     }
 
     @FXML
-    void addIncident(ActionEvent event) {
+    public void addIncident(ActionEvent event) {
 
     }
 
     @FXML
-    void upvote(ActionEvent event) {
+    public void upvote(ActionEvent event) {
 
     }
 
