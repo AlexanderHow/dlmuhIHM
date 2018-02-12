@@ -1,6 +1,7 @@
 package fr.polytech.ihm;
 
 import fr.polytech.ihm.Model.Task;
+import javafx.beans.property.BooleanProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -55,9 +56,15 @@ public class VisualiserController {
 
     private Task task;
     private boolean alreadyUpvoted=false;
+    private boolean adminMode=false;
 
     @FXML
     public void initialize(){
+        this.setAdminMode(true);
+        if(!adminMode){
+            this.resolvedVisuAdmin.setDisable(true);
+            this.resolvedVisuAdmin.setVisible(false);
+        }
         this.task=new Task("Test Task","Alexandre","Françis","Test",new Date().toString(),"Polytech", "This is not Sparta but just a test AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAhhhhhhh !",2,2);
 
         if(this.task!=null){
@@ -78,6 +85,10 @@ public class VisualiserController {
 
     public void setTask(Task t){
         this.task=t;
+    }
+
+    public void setAdminMode(boolean admin){
+        this.adminMode=admin;
     }
 
     public void onClickReturn(MouseEvent mouseEvent) {
@@ -101,6 +112,13 @@ public class VisualiserController {
             this.task.upvoteTask();
             this.alreadyUpvoted=true;
             System.out.println(this.task.upvoteProperty().toString());
+        }
+    }
+
+    public void onClickResolve(MouseEvent mouseEvent){
+        if(adminMode){
+            this.task.resolveTask();
+            System.out.println(this.task.resolvedProperty().toString());
         }
     }
 }

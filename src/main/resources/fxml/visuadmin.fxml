@@ -152,7 +152,7 @@
             <Insets bottom="50.0" />
          </BorderPane.margin>
          <children>
-            <Button id="resolvedVisuAdmin" fx:id="resolvedVisuAdmin" mnemonicParsing="false" text="Resolved" GridPane.halignment="CENTER">
+            <Button id="resolvedVisuAdmin" fx:id="resolvedVisuAdmin" mnemonicParsing="false" text="Resolved" GridPane.halignment="CENTER" onMouseClicked="#onClickResolve">
                <font>
                   <Font name="Calibri" size="24.0" />
                </font>
