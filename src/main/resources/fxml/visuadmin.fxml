@@ -93,7 +93,7 @@
                   <Insets left="150.0" right="150.0" />
                </VBox.margin>
                <children>
-                  <Button id="upvoteVisuAdmin" fx:id="upvoteVisuAdmin" mnemonicParsing="false" text="Upvote" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                  <Button id="upvoteVisuAdmin" fx:id="upvoteVisuAdmin" mnemonicParsing="false" text="Upvote" GridPane.columnIndex="1" GridPane.halignment="RIGHT" onMouseClicked="#onClickUpvote">
                      <font>
                         <Font name="Calibri" size="18.0" />
                      </font>

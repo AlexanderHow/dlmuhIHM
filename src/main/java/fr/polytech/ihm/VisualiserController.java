@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.converter.NumberStringConverter;
 
 import java.io.IOException;
 import java.util.Date;
@@ -52,19 +53,31 @@ public class VisualiserController {
     @FXML
     private Button resolvedVisuAdmin;
 
-    //TODO : initialize on click
+    private Task task;
+    private boolean alreadyUpvoted=false;
+
     @FXML
     public void initialize(){
-        Task t = new Task("Test Task","Alexandre","Françis","Test",new Date().toString(),"Polytech", "This is not Sparta but just a test AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAhhhhhhh !",2,2);
-        this.titleVisuAdmin.setText("Titlt Task: " +t.titleProperty().get());
-        this.authorVisuAdmin.setText("Author: "+t.authorProperty().get());
-        this.assigneeVisuAdmin.setText("Assignee: "+t.assigneeProperty().get());
-        this.categoryVisuAdmin.setText("Category: "+t.categoryProperty().get());
-        this.dateVisuAdmin.setText("Date: "+t.dateProperty().get());
-        this.locationVisuAdmin.setText("Location: "+t.locationProperty().get());
-        this.descriptionVisuAdmin.setText(t.descriptionProperty().get());
-        this.displayUpvoteVisuAdmin.setText("+"+t.upvoteProperty().toString());
+        this.task=new Task("Test Task","Alexandre","Françis","Test",new Date().toString(),"Polytech", "This is not Sparta but just a test AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAhhhhhhh !",2,2);
 
+        if(this.task!=null){
+            this.titleVisuAdmin.setText("Titlt Task: " +this.task.titleProperty().get());
+            this.authorVisuAdmin.setText("Author: "+this.task.authorProperty().get());
+            this.assigneeVisuAdmin.setText("Assignee: "+this.task.assigneeProperty().get());
+            this.categoryVisuAdmin.setText("Category: "+this.task.categoryProperty().get());
+            this.dateVisuAdmin.setText("Date: "+this.task.dateProperty().get());
+            this.locationVisuAdmin.setText("Location: "+this.task.locationProperty().get());
+            this.descriptionVisuAdmin.setText(this.task.descriptionProperty().get());
+            //this.displayUpvoteVisuAdmin.setText("+"+this.task.upvoteProperty().toString());
+            this.displayUpvoteVisuAdmin.textProperty().bindBidirectional(this.task.upvoteProperty(),new NumberStringConverter());
+        }else{
+            //TODO : gest error
+            this.titleVisuAdmin.setText("Titlt Task: Error");
+        }
+    }
+
+    public void setTask(Task t){
+        this.task=t;
     }
 
     public void onClickReturn(MouseEvent mouseEvent) {
@@ -81,6 +94,13 @@ public class VisualiserController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    public void onClickUpvote(MouseEvent mouseEvent){
+        if(!alreadyUpvoted){
+            this.task.upvoteTask();
+            this.alreadyUpvoted=true;
+            System.out.println(this.task.upvoteProperty().toString());
+        }
     }
 }
