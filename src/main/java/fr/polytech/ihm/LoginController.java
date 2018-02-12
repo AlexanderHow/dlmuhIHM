@@ -8,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -28,6 +30,10 @@ public class LoginController {
     }
 
     public void onClick(MouseEvent mouseEvent) throws Exception {
+        this.accountCheck();
+    }
+
+    private void accountCheck() throws Exception{
         LoginCheck loginCheck = new LoginCheck(username.getText(), password.getText());
         if(loginCheck.isAdmin())
             this.loadView("/fxml/list_incidents.fxml");
@@ -46,11 +52,16 @@ public class LoginController {
             Stage stage = (Stage) login.getScene().getWindow();
             Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
             Scene scene = new Scene(rootNode, 1200, 700);
-            stage.setTitle("Hello JavaFX and Maven");
+            stage.setTitle("Liste des incidents");
             stage.setScene(scene);
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void enterPressed(KeyEvent keyEvent) throws Exception{
+        if(keyEvent.getCode() == KeyCode.ENTER)
+            this.accountCheck();
     }
 }
