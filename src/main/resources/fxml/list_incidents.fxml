@@ -73,12 +73,12 @@
                                                         <VBox alignment="CENTER_LEFT" minHeight="150.0" minWidth="200.0"
                                                               spacing="16.0">
                                                             <children>
-                                                                <Label fx:id="incidentTitle4"
+                                                                <Label fx:id="incidentTitle"
                                                                        text="Titre de l'incident"/>
-                                                                <Label fx:id="incidentLocalisation4"
+                                                                <Label fx:id="incidentLocalisation"
                                                                        text="Localisation de l'incident"/>
-                                                                <Label fx:id="incidentDate4" text="Date de l'incident"/>
-                                                                <Label fx:id="incidentDescription4"
+                                                                <Label fx:id="incidentDate" text="Date de l'incident"/>
+                                                                <Label fx:id="incidentDescription"
                                                                        text="Description de l'incident"/>
                                                             </children>
                                                             <padding>
@@ -87,7 +87,7 @@
                                                         </VBox>
                                                         <AnchorPane GridPane.columnIndex="1">
                                                             <children>
-                                                                <Label fx:id="importanceIncident4"
+                                                                <Label fx:id="importanceIncident"
                                                                        layoutX="1.0999755859375" layoutY="8.0"
                                                                        text="importance" textFill="#bf2323"
                                                                        AnchorPane.topAnchor="8.0"/>
@@ -95,9 +95,9 @@
                                                                       layoutX="1.0999755859375" prefWidth="75.0"
                                                                       AnchorPane.bottomAnchor="0.0">
                                                                     <children>
-                                                                        <Label fx:id="incidentScore4" text="score"
+                                                                        <Label fx:id="incidentScore" text="score"
                                                                                textFill="#49bc3c"/>
-                                                                        <Button fx:id="upvoteIncidentButton4"
+                                                                        <Button fx:id="upvoteIncidentButton"
                                                                                 mnemonicParsing="false"
                                                                                 onAction="#upvote" text="Upvote">
                                                                             <VBox.margin>
