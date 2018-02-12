@@ -14,7 +14,6 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class IncidentController {
 
