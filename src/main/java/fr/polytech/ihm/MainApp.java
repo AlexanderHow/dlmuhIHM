@@ -27,7 +27,7 @@ public class MainApp extends Application {
 
         log.debug("Showing JFX scene");
         Scene scene = new Scene(rootNode, 1200, 700);
-        stage.setTitle("Hello JavaFX and Maven");
+        stage.setTitle("Ecran de connexion");
         stage.setScene(scene);
         stage.show();
     }
