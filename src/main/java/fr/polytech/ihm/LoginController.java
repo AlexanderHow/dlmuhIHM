@@ -36,22 +36,24 @@ public class LoginController {
     private void accountCheck() throws Exception{
         LoginCheck loginCheck = new LoginCheck(username.getText(), password.getText());
         if(loginCheck.isAdmin())
-            this.loadView("/fxml/list_incidents.fxml");
+            this.loadView("/fxml/list_incidents.fxml", loginCheck.isAdmin());
         if(loginCheck.isValid())
-            this.loadView("/fxml/list_incidents.fxml");
+            this.loadView("/fxml/list_incidents.fxml", loginCheck.isAdmin());
         else {
             username.setText("");
             password.setText("");
         }
     }
 
-    private void loadView(String name) throws Exception{
+    private void loadView(String name, boolean isAdmin) throws Exception{
         String fxmlFile = name;
         FXMLLoader loader = new FXMLLoader();
         try {
             Stage stage = (Stage) login.getScene().getWindow();
             Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
             Scene scene = new Scene(rootNode, 1200, 700);
+            IncidentController controller = loader.<IncidentController>getController();
+            //controller.setAdmin(isAdmin);
             stage.setTitle("Liste des incidents");
             stage.setScene(scene);
             stage.show();
