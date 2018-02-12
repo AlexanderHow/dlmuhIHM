@@ -15,7 +15,9 @@
                         <HBox alignment="CENTER" fillHeight="false" spacing="4.0" BorderPane.alignment="CENTER">
                             <children>
                                 <TextField prefWidth="200.0" text="Search"/>
-                                <ComboBox fx:id="categoryIncident" prefWidth="150.0" promptText="Category"/>
+                                <ComboBox fx:id="categoryIncident" prefWidth="150.0" promptText="Categorie"/>
+                                <ComboBox fx:id="locationIncident" prefWidth="150.0" promptText="Localisation"/>
+                                <ComboBox fx:id="resolutionIncident" prefWidth="150.0" promptText="Résolution"/>
                             </children>
                         </HBox>
                     </left>
