@@ -1,5 +1,7 @@
 package fr.polytech.ihm;
 
+import fr.polytech.ihm.Model.EnumCategory;
+import fr.polytech.ihm.Model.EnumLocation;
 import fr.polytech.ihm.Model.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,7 +19,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class IncidentController {
 
     @FXML
-    private ComboBox<?> categoryIncident;
+    private ComboBox<String> categoryIncident;
+
+    @FXML
+    private ComboBox<String> locationIncident;
+
+    @FXML
+    private ComboBox<String> resolutionIncident;
 
     @FXML
     private Button userButton;
@@ -50,6 +58,21 @@ public class IncidentController {
     @FXML
     public void accessUserData(ActionEvent event) {
 
+    }
+
+    @FXML
+    public void initialize() {
+        for (EnumCategory cat: EnumCategory.values()) {
+            categoryIncident.getItems().add(cat.toString());
+        }
+        for (EnumLocation loc: EnumLocation.values()) {
+            locationIncident.getItems().add(loc.toString());
+        }
+        resolutionIncident.getItems().addAll(
+                "A faire",
+                "En cours",
+                "Terminé"
+        );
     }
 
     @FXML
