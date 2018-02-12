@@ -2,11 +2,17 @@ package fr.polytech.ihm;
 
 import fr.polytech.ihm.Model.Task;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Date;
 
 public class VisualiserController {
@@ -58,6 +64,23 @@ public class VisualiserController {
         this.locationVisuAdmin.setText("Location: "+t.locationProperty().get());
         this.descriptionVisuAdmin.setText(t.descriptionProperty().get());
         this.displayUpvoteVisuAdmin.setText("+"+t.upvoteProperty().toString());
+
+    }
+
+    public void onClickReturn(MouseEvent mouseEvent) {
+
+        String fxmlFile = "/fxml/list_incidents.fxml";
+        FXMLLoader loader = new FXMLLoader();
+        try {
+            Stage stage=(Stage) returnVisuAdmin.getScene().getWindow();
+            Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
+
+            Scene scene = new Scene(rootNode);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 }
