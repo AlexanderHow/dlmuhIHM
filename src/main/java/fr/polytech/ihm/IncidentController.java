@@ -17,6 +17,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -74,10 +75,13 @@ public class IncidentController {
             emergencyViewer.setFitWidth(30);
             vBox.getChildren().addAll(title, date, author, location);
             vBox2.getChildren().addAll(emergencyViewer, goNext);
-            vBox2.setAlignment(Pos.CENTER);
+            vBox2.setAlignment(Pos.CENTER_RIGHT);
             vBox2.setSpacing(10);
+            hbox.setAlignment(Pos.CENTER);
             hbox.setSpacing(20);
             hbox.getChildren().addAll(vBox, vBox2);
+            hbox.setHgrow(vBox, Priority.ALWAYS);
+            hbox.setHgrow(vBox2, Priority.ALWAYS);
             goNext.setOnAction(e -> {
                 getItem().incrementResolved();
                 String fxmlFile = "/fxml/list_incidents.fxml";
