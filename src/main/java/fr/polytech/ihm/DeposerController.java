@@ -2,20 +2,29 @@ package fr.polytech.ihm;
 
 import fr.polytech.ihm.Model.EnumCategory;
 import fr.polytech.ihm.Model.EnumLocation;
+import javafx.animation.Interpolator;
+import javafx.animation.PathTransition;
+import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.*;
 import javafx.stage.Modality;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 
 public class DeposerController {
 
+    @FXML
     public Label error;
     @FXML
     private TextField titleTextId;
@@ -47,6 +56,8 @@ public class DeposerController {
     @FXML
     private Button exeButton;
 
+    private TranslateTransition anim =new TranslateTransition();
+
     @FXML
     private void initialize(){
         cBoxEmergencyId.getItems().addAll("1","2","3");
@@ -57,6 +68,7 @@ public class DeposerController {
         for (EnumCategory c : EnumCategory.values()) {
             cBoxCategoryId.getItems().add(c.toString());
         }
+        wizz();
     }
 
     public void delete(MouseEvent mouseEvent) {
@@ -78,6 +90,8 @@ public class DeposerController {
         FXMLLoader loader = new FXMLLoader();
         if (titleTextId.getText().isEmpty() || whoTextId.getText().isEmpty() || hourTextId.getText().isEmpty() ){
             error.setVisible(true);
+            anim.play();
+            System.out.println("Play");
         }else {
             try {
                 Stage stage = (Stage) exeButton.getScene().getWindow();
@@ -90,5 +104,23 @@ public class DeposerController {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void escapePressed(KeyEvent keyEvent) throws Exception{
+        if(keyEvent.getCode() == KeyCode.ESCAPE) {
+            Stage stage = (Stage) exeButton.getScene().getWindow();
+            stage.close();
+        }
+    }
+
+    public void wizz(){
+        TranslateTransition t = new TranslateTransition();
+        t.setNode(error);
+        t.setToX(-30);
+        t.setAutoReverse(true);
+        t.setCycleCount(6);
+        t.setRate(4);
+        anim=t;
+        System.out.println("Hello");
     }
 }
