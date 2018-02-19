@@ -3,6 +3,8 @@ package fr.polytech.ihm;
 import fr.polytech.ihm.Model.Data;
 import fr.polytech.ihm.Model.Task;
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -55,6 +57,9 @@ public class VisualiserController {
 
     @FXML
     private Button resolvedVisuAdmin;
+
+    @FXML
+    private Text savedDisplay;
 
     private Task task;
     private boolean alreadyUpvoted=false;
@@ -147,5 +152,10 @@ public class VisualiserController {
         if(adminMode){
             this.task.deleteTask();
         }
+    }
+
+    public void saveDescription(ActionEvent actionEvent) {
+        task.setNewDescription(new SimpleStringProperty(descriptionVisuAdmin.getText()));
+        savedDisplay.setVisible(true);
     }
 }

@@ -154,4 +154,8 @@ public class Task {
     public boolean isDisabled() {
         return disabled;
     }
+
+    public void setNewDescription (StringProperty newDescription){
+        this.description=newDescription;
+    }
 }
