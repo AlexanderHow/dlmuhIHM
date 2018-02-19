@@ -35,7 +35,37 @@ public class Data {
         return null;
     }
 
-    public static ArrayList<Task> getData(){
+    public ArrayList<Task> getData(){
         return ourInstance.tasks;
+    }
+
+    public ArrayList<Task> getDataToDo(){
+        ArrayList<Task> td = new ArrayList<Task>();
+        for(Task t : ourInstance.tasks){
+            if(t.isToDo() && t.isDisabled()){
+                td.add(t);
+            }
+        }
+        return td;
+    }
+
+    public ArrayList<Task> getDataInProgress(){
+        ArrayList<Task> ip = new ArrayList<Task>();
+        for(Task t : ourInstance.tasks){
+            if(t.isInProgress() && t.isDisabled()){
+                ip.add(t);
+            }
+        }
+        return ip;
+    }
+
+    public ArrayList<Task> getDataDone(){
+        ArrayList<Task> r = new ArrayList<Task>();
+        for(Task t : ourInstance.tasks){
+            if(t.isResolved() && t.isDisabled()){
+                r.add(t);
+            }
+        }
+        return r;
     }
 }
