@@ -94,7 +94,6 @@ public class DeposerController {
                 || cBoxCategoryId.getValue()==null || cBoxEmergencyId.getValue()==null || cBoxLocalisationId.getValue()==null){
             error.setVisible(true);
             anim.play();
-            System.out.println("Play");
         }else {
             String title = titleTextId.getText();
             String who = whoTextId.getText();
@@ -133,6 +132,5 @@ public class DeposerController {
         t.setCycleCount(6);
         t.setRate(4);
         anim=t;
-        System.out.println("Hello");
     }
 }
