@@ -1,7 +1,9 @@
 package fr.polytech.ihm;
 
+import fr.polytech.ihm.Model.Data;
 import fr.polytech.ihm.Model.EnumCategory;
 import fr.polytech.ihm.Model.EnumLocation;
+import fr.polytech.ihm.Model.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,6 +15,7 @@ import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Date;
 
 public class DeposerController {
 
@@ -24,7 +27,7 @@ public class DeposerController {
     private TextField whoTextId;
 
     @FXML
-    private ComboBox<String> cBoxEmergencyId;
+    private ComboBox<Integer> cBoxEmergencyId;
 
     @FXML
     private TextField hourTextId;
@@ -47,9 +50,11 @@ public class DeposerController {
     @FXML
     private Button exeButton;
 
+    private Data data;
+
     @FXML
     private void initialize(){
-        cBoxEmergencyId.getItems().addAll("1","2","3");
+        cBoxEmergencyId.getItems().addAll(1,2,3);
 
         for (EnumLocation l : EnumLocation.values()) {
             cBoxLocalisationId.getItems().add(l.toString());
@@ -76,9 +81,19 @@ public class DeposerController {
     public void submit(MouseEvent mouseEvent) {
         String fxmlFile = "/fxml/list_incidents.fxml";
         FXMLLoader loader = new FXMLLoader();
-        if (titleTextId.getText().isEmpty() || whoTextId.getText().isEmpty() || hourTextId.getText().isEmpty() ){
+        if (titleTextId.getText().isEmpty() || whoTextId.getText().isEmpty() || hourTextId.getText().isEmpty() ||dateId.getValue() == null
+                || cBoxCategoryId.getValue()==null || cBoxEmergencyId.getValue()==null || cBoxLocalisationId.getValue()==null){
             error.setVisible(true);
         }else {
+            String title = titleTextId.getText();
+            String who = whoTextId.getText();
+            int emergency = cBoxEmergencyId.getValue();
+            String hour = hourTextId.getText();
+            String date = dateId.getValue().toString();
+            String location = cBoxLocalisationId.getValue();
+            String category = cBoxCategoryId.getValue();
+            String description = descriptionId.getText();
+            Data.addTask(title,who,null,category,date,location,description,0,emergency);
             try {
                 Stage stage = (Stage) exeButton.getScene().getWindow();
                 Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
