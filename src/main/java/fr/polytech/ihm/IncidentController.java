@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -51,13 +52,16 @@ public class IncidentController {
     @FXML
     private Button addIncidentButton;
 
-    private Task currentTask;
+    private boolean adminMode=false;
 
-    private ObservableList<Task> toDoItems = FXCollections.observableArrayList(Data.getData());
+    private ObservableList<Task> toDoItems = FXCollections.observableArrayList(Data.getInstance().getDataToDo());
+    private ObservableList<Task> inProgressItems = FXCollections.observableArrayList(Data.getInstance().getDataInProgress());
+    private ObservableList<Task> doneItems = FXCollections.observableArrayList(Data.getInstance().getDataDone());
 
     static class Cell extends ListCell<Task>{
         HBox hbox = new HBox();
         VBox vBox = new VBox();
+        VBox vBox2 = new VBox();
         Label title = new Label("");
         Label date = new Label("");
         Label author = new Label("");
@@ -68,7 +72,26 @@ public class IncidentController {
         public Cell(){
             super();
             vBox.getChildren().addAll(title, date, author, location);
-            hbox.getChildren().addAll(vBox, emergencyLevel, goNext);
+            vBox2.getChildren().addAll(emergencyLevel, goNext);
+            vBox2.setAlignment(Pos.CENTER);
+            vBox2.setSpacing(10);
+            hbox.setSpacing(20);
+            hbox.getChildren().addAll(vBox, vBox2);
+            goNext.setOnAction(e -> {
+                getItem().incrementResolved();
+                String fxmlFile = "/fxml/list_incidents.fxml";
+                FXMLLoader loader = new FXMLLoader();
+                try {
+                    Stage stage=(Stage) goNext.getScene().getWindow();
+                    Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
+
+                    Scene scene = new Scene(rootNode);
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (IOException ie) {
+                    ie.printStackTrace();
+                }
+            });
         }
 
         public void updateItem(Task task, boolean empty){
@@ -107,7 +130,14 @@ public class IncidentController {
         );
         listViewToDo.setItems(toDoItems);
         listViewToDo.setCellFactory(param -> new Cell());
+
+        listViewInProgress.setItems(inProgressItems);
+        listViewInProgress.setCellFactory(param -> new Cell());
+
+        listViewDone.setItems(doneItems);
+        listViewDone.setCellFactory(param -> new Cell());
     }
+
 
     @FXML
     public void addIncident(ActionEvent event) throws IOException {
@@ -127,14 +157,7 @@ public class IncidentController {
     }
 
     @FXML
-    public void upvote(ActionEvent event) {
-        /*
-        int nbUpvote = currentTask.getUpvote();
-        */
-    }
-
-    @FXML
-    public void disconnect(MouseEvent mouseEvent) {
+    public void disconnect(ActionEvent event) {
         String fxmlFile = "/fxml/LoginScreen.fxml";
         FXMLLoader loader = new FXMLLoader();
         try {
@@ -147,5 +170,9 @@ public class IncidentController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setAdminMode(boolean b){
+        this.adminMode=b;
     }
 }

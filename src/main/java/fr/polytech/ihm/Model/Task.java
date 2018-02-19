@@ -116,7 +116,21 @@ public class Task {
     }
 
     public void setResolved(int resolved) {
-        this.resolvedLvl.set(resolved);
+        if(this.resolvedLvl.get()<=3){
+            this.resolvedLvl.set(resolved);
+        }else{
+            this.disabled=true;
+        }
+
+    }
+
+    public void incrementResolved() {
+        if((this.resolvedLvl.get()+1)<=3){
+            this.resolvedLvl.set(this.resolvedLvl.get()+1);
+        }else{
+            this.disabled=true;
+        }
+
     }
 
     public void upvoteTask(){
@@ -135,5 +149,9 @@ public class Task {
 
     public int getId() {
         return id;
+    }
+
+    public boolean isDisabled() {
+        return disabled;
     }
 }

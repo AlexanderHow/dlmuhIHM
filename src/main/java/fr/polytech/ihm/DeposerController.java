@@ -100,7 +100,7 @@ public class DeposerController {
 
                 Scene scene = new Scene(rootNode);
                 stage.setScene(scene);
-                stage.showAndWait();
+                stage.show();
             } catch (IOException e) {
                 e.printStackTrace();
             }
