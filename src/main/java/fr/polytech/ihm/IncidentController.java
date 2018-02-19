@@ -78,6 +78,7 @@ public class IncidentController {
             vBox2.setAlignment(Pos.CENTER_RIGHT);
             vBox2.setSpacing(10);
             hbox.setAlignment(Pos.CENTER);
+            hbox.setMaxWidth(280);
             hbox.setSpacing(20);
             hbox.getChildren().addAll(vBox, vBox2);
             hbox.setHgrow(vBox, Priority.ALWAYS);
