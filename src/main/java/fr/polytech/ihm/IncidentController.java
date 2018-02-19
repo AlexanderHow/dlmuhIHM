@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -27,7 +28,7 @@ public class IncidentController {
     private ComboBox<String> resolutionIncident;
 
     @FXML
-    private Button userButton;
+    private Button decoButton;
 
     @FXML
     private Label incidentTitle;
@@ -97,4 +98,19 @@ public class IncidentController {
         */
     }
 
+    @FXML
+    public void disconnect(MouseEvent mouseEvent) {
+        String fxmlFile = "/fxml/LoginScreen.fxml";
+        FXMLLoader loader = new FXMLLoader();
+        try {
+            Stage stage = (Stage) decoButton.getScene().getWindow();
+            Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
+
+            Scene scene = new Scene(rootNode);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
