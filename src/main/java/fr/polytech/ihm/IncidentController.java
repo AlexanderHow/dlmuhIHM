@@ -35,9 +35,6 @@ public class IncidentController {
     private ComboBox<String> locationIncident;
 
     @FXML
-    private ComboBox<String> resolutionIncident;
-
-    @FXML
     private Button decoButton;
 
     @FXML
@@ -123,11 +120,7 @@ public class IncidentController {
         for (EnumLocation loc: EnumLocation.values()) {
             locationIncident.getItems().add(loc.toString());
         }
-        resolutionIncident.getItems().addAll(
-                "A faire",
-                "En cours",
-                "Terminé"
-        );
+
         listViewToDo.setItems(toDoItems);
         listViewToDo.setCellFactory(param -> new Cell());
 
