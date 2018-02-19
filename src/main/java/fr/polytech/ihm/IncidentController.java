@@ -52,9 +52,9 @@ public class IncidentController {
     @FXML
     private Button addIncidentButton;
 
-    private Task currentTask;
+    private boolean adminMode=false;
 
-    private ObservableList<Task> toDoItems = FXCollections.observableArrayList(Data.getData());
+    private ObservableList<Task> toDoItems = FXCollections.observableArrayList(Data.getInstance().getDataToDo());
 
     static class Cell extends ListCell<Task>{
         HBox hbox = new HBox();
@@ -133,13 +133,6 @@ public class IncidentController {
     }
 
     @FXML
-    public void upvote(ActionEvent event) {
-        /*
-        int nbUpvote = currentTask.getUpvote();
-        */
-    }
-
-    @FXML
     public void disconnect(MouseEvent mouseEvent) {
         String fxmlFile = "/fxml/LoginScreen.fxml";
         FXMLLoader loader = new FXMLLoader();
@@ -153,5 +146,9 @@ public class IncidentController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setAdminMode(boolean b){
+        this.adminMode=b;
     }
 }
