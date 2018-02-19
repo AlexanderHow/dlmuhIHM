@@ -1,5 +1,6 @@
 package fr.polytech.ihm;
 
+import fr.polytech.ihm.Model.Data;
 import fr.polytech.ihm.Model.Task;
 import javafx.beans.property.BooleanProperty;
 import javafx.fxml.FXML;
@@ -65,7 +66,8 @@ public class VisualiserController {
             this.resolvedVisuAdmin.setDisable(true);
             this.resolvedVisuAdmin.setVisible(false);
         }
-        this.task=new Task("Test Task","Alexandre","Françis","Test",new Date().toString(),"Polytech", "This is not Sparta but just a test AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAhhhhhhh !",2,2);
+        Data.addTask("Test Task","Alexandre","Françis","Test",new Date().toString(),"Polytech", "This is not Sparta but just a test AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAhhhhhhh !",2,2);
+        this.task=Data.getById(1);
 
         if(this.task!=null){
             this.titleVisuAdmin.setText("Titlt Task: " +this.task.titleProperty().get());
@@ -111,14 +113,17 @@ public class VisualiserController {
         if(!alreadyUpvoted){
             this.task.upvoteTask();
             this.alreadyUpvoted=true;
-            System.out.println(this.task.upvoteProperty().toString());
+            this.upvoteVisuAdmin.setText("Downvote");
+        }else{
+            this.task.downvoteTask();
+            this.alreadyUpvoted=false;
+            this.upvoteVisuAdmin.setText("Upvote");
         }
     }
 
-    public void onClickResolve(MouseEvent mouseEvent){
+    public void onClickDelete(MouseEvent mouseEvent){
         if(adminMode){
-            this.task.resolveTask();
-            System.out.println(this.task.resolvedProperty().toString());
+            this.task.deleteTask();
         }
     }
 }
