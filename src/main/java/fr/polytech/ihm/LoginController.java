@@ -56,7 +56,7 @@ public class LoginController {
         try {
             Stage stage = (Stage) login.getScene().getWindow();
             Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
-            Scene scene = new Scene(rootNode, 1200, 700);
+            Scene scene = new Scene(rootNode);
             IncidentController controller = loader.<IncidentController>getController();
             //controller.setAdmin(isAdmin);
             stage.setTitle("Liste des incidents");

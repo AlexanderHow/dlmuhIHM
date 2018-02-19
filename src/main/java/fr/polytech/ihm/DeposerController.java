@@ -1,5 +1,6 @@
 package fr.polytech.ihm;
 
+import fr.polytech.ihm.Model.Data;
 import fr.polytech.ihm.Model.EnumCategory;
 import fr.polytech.ihm.Model.EnumLocation;
 import javafx.animation.Interpolator;
@@ -21,6 +22,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.util.Date;
 
 public class DeposerController {
 
@@ -33,7 +35,7 @@ public class DeposerController {
     private TextField whoTextId;
 
     @FXML
-    private ComboBox<String> cBoxEmergencyId;
+    private ComboBox<Integer> cBoxEmergencyId;
 
     @FXML
     private TextField hourTextId;
@@ -60,7 +62,7 @@ public class DeposerController {
 
     @FXML
     private void initialize(){
-        cBoxEmergencyId.getItems().addAll("1","2","3");
+        cBoxEmergencyId.getItems().addAll(1,2,3);
 
         for (EnumLocation l : EnumLocation.values()) {
             cBoxLocalisationId.getItems().add(l.toString());
@@ -88,18 +90,28 @@ public class DeposerController {
     public void submit(MouseEvent mouseEvent) {
         String fxmlFile = "/fxml/list_incidents.fxml";
         FXMLLoader loader = new FXMLLoader();
-        if (titleTextId.getText().isEmpty() || whoTextId.getText().isEmpty() || hourTextId.getText().isEmpty() ){
+        if (titleTextId.getText().isEmpty() || whoTextId.getText().isEmpty() || hourTextId.getText().isEmpty() ||dateId.getValue() == null
+                || cBoxCategoryId.getValue()==null || cBoxEmergencyId.getValue()==null || cBoxLocalisationId.getValue()==null){
             error.setVisible(true);
             anim.play();
             System.out.println("Play");
         }else {
+            String title = titleTextId.getText();
+            String who = whoTextId.getText();
+            int emergency = cBoxEmergencyId.getValue();
+            String hour = hourTextId.getText();
+            String date = dateId.getValue().toString();
+            String location = cBoxLocalisationId.getValue();
+            String category = cBoxCategoryId.getValue();
+            String description = descriptionId.getText();
+            Data.addTask(title,who,null,category,date,location,description,0,emergency);
             try {
                 Stage stage = (Stage) exeButton.getScene().getWindow();
                 Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
 
                 Scene scene = new Scene(rootNode);
                 stage.setScene(scene);
-                stage.showAndWait();
+                stage.show();
             } catch (IOException e) {
                 e.printStackTrace();
             }
