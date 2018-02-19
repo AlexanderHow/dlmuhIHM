@@ -3,6 +3,7 @@ package fr.polytech.ihm.Model;
 import javafx.beans.property.*;
 
 public class Task {
+    private int id;
     private StringProperty title;
     private StringProperty author;
     private StringProperty assignee;
@@ -12,9 +13,11 @@ public class Task {
     private StringProperty description;
     private IntegerProperty upvote;
     private IntegerProperty emergencyLvl; //1(easy) to 3(important)
-    private BooleanProperty resolved = new SimpleBooleanProperty(false);
+    private IntegerProperty resolvedLvl = new SimpleIntegerProperty(1); //1: To do, 2: In progress, 3: Done
+    private boolean disabled=false;
 
-    public Task(String title,String author,String assignee,String category,String date,String location,String description,int upvote, int emergency){
+    public Task(int id, String title,String author,String assignee,String category,String date,String location,String description,int upvote, int emergency){
+        this.id=id;
         this.title=new SimpleStringProperty(title);
         this.author=new SimpleStringProperty(author);
         this.assignee=new SimpleStringProperty(assignee);
@@ -98,23 +101,39 @@ public class Task {
         return emergencyLvl;
     }
 
+    public boolean isToDo() {
+        return (resolvedLvl.get()==1);
+    }
+    public boolean isInProgress() {
+        return (resolvedLvl.get()==2);
+    }
     public boolean isResolved() {
-        return resolved.get();
+        return (resolvedLvl.get()==3);
     }
 
-    public BooleanProperty resolvedProperty() {
-        return resolved;
+    public IntegerProperty resolvedProperty() {
+        return resolvedLvl;
     }
 
-    public void setResolved(boolean resolved) {
-        this.resolved.set(resolved);
+    public void setResolved(int resolved) {
+        this.resolvedLvl.set(resolved);
     }
 
     public void upvoteTask(){
         this.upvoteProperty().setValue(this.upvote.getValue()+1);
     }
 
-    public void resolveTask(){
-        this.resolved.setValue(true);
+    public void downvoteTask(){
+        if(this.upvote.get()>0){
+            this.upvoteProperty().setValue(this.upvote.getValue()-1);
+        }
+    }
+
+    public void deleteTask(){
+        this.disabled=true;
+    }
+
+    public int getId() {
+        return id;
     }
 }
