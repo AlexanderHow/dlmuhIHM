@@ -67,7 +67,7 @@ public class IncidentController {
         Label author = new Label("");
         Label location = new Label("");
         Label emergencyLevel = new Label("");
-        Button goNext = new Button("->");
+        Button goNext = new Button("→");
 
         public Cell(){
             super();
