@@ -17,6 +17,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -63,17 +64,25 @@ public class IncidentController {
         Label date = new Label("");
         Label author = new Label("");
         Label location = new Label("");
-        Label emergencyLevel = new Label("");
+        Image emergencyLevel = new Image("/images/pastillergence.png");
+        ImageView emergencyViewer = new ImageView(emergencyLevel);
+
         Button goNext = new Button("→");
 
         public Cell(){
             super();
+            emergencyViewer.setFitHeight(30);
+            emergencyViewer.setFitWidth(30);
             vBox.getChildren().addAll(title, date, author, location);
-            vBox2.getChildren().addAll(emergencyLevel, goNext);
-            vBox2.setAlignment(Pos.CENTER);
+            vBox2.getChildren().addAll(emergencyViewer, goNext);
+            vBox2.setAlignment(Pos.CENTER_RIGHT);
             vBox2.setSpacing(10);
+            hbox.setAlignment(Pos.CENTER);
+            hbox.setMaxWidth(280);
             hbox.setSpacing(20);
             hbox.getChildren().addAll(vBox, vBox2);
+            hbox.setHgrow(vBox, Priority.ALWAYS);
+            hbox.setHgrow(vBox2, Priority.ALWAYS);
             goNext.setOnAction(e -> {
                 getItem().incrementResolved();
                 String fxmlFile = "/fxml/list_incidents.fxml";
@@ -101,7 +110,20 @@ public class IncidentController {
                 date.setText(task.getDate());
                 author.setText(task.getAuthor());
                 location.setText(task.getLocation());
-                emergencyLevel.setText("" + task.getEmergencyLvl());
+                Image emergencyLevel;
+                switch (task.getEmergencyLvl()) {
+                    case 1:
+                        emergencyLevel = new Image("/images/green.png");
+                        emergencyViewer.setImage(emergencyLevel);
+                        break;
+                    case 2:
+                        emergencyLevel = new Image("/images/orange.png");
+                        emergencyViewer.setImage(emergencyLevel);
+                        break;
+                    case 3:
+                        emergencyLevel = new Image("/images/red.png");
+                        emergencyViewer.setImage(emergencyLevel);
+                }
                 setGraphic(hbox);
             }
         }

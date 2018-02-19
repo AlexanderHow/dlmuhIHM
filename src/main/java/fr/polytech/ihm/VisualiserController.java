@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -80,6 +81,20 @@ public class VisualiserController {
             this.descriptionVisuAdmin.setText(this.task.descriptionProperty().get());
             //this.displayUpvoteVisuAdmin.setText("+"+this.task.upvoteProperty().toString());
             this.displayUpvoteVisuAdmin.textProperty().bindBidirectional(this.task.upvoteProperty(),new NumberStringConverter());
+            Image emergencyLevel;
+            switch (task.getEmergencyLvl()) {
+                case 1:
+                    emergencyLevel = new Image("/images/green.png");
+                    imgEmergencyVisuAdmin.setImage(emergencyLevel);
+                    break;
+                case 2:
+                    emergencyLevel = new Image("/images/orange.png");
+                    imgEmergencyVisuAdmin.setImage(emergencyLevel);
+                    break;
+                case 3:
+                    emergencyLevel = new Image("/images/red.png");
+                    imgEmergencyVisuAdmin.setImage(emergencyLevel);
+            }
         }else{
             //TODO : gest error
             this.titleVisuAdmin.setText("Title Task: Error");
