@@ -45,7 +45,7 @@
                     <center>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="263.0" prefWidth="569.0">
                      <children>
-                              <Button fx:id="userButton" layoutX="169.0" mnemonicParsing="false" onAction="#accessUserData" text="User" />
+                              <Button fx:id="decoButton" layoutX="114.0" mnemonicParsing="false" onAction="#disconnect" text="Déconnexion" />
                      </children></AnchorPane>
                     </center>
                 </BorderPane>

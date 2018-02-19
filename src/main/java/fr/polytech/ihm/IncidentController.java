@@ -55,6 +55,8 @@ public class IncidentController {
     private boolean adminMode=false;
 
     private ObservableList<Task> toDoItems = FXCollections.observableArrayList(Data.getInstance().getDataToDo());
+    private ObservableList<Task> inProgressItems = FXCollections.observableArrayList(Data.getInstance().getDataInProgress());
+    private ObservableList<Task> doneItems = FXCollections.observableArrayList(Data.getInstance().getDataDone());
 
     static class Cell extends ListCell<Task>{
         HBox hbox = new HBox();
@@ -75,6 +77,21 @@ public class IncidentController {
             vBox2.setSpacing(10);
             hbox.setSpacing(20);
             hbox.getChildren().addAll(vBox, vBox2);
+            goNext.setOnAction(e -> {
+                getItem().incrementResolved();
+                String fxmlFile = "/fxml/list_incidents.fxml";
+                FXMLLoader loader = new FXMLLoader();
+                try {
+                    Stage stage=(Stage) goNext.getScene().getWindow();
+                    Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
+
+                    Scene scene = new Scene(rootNode);
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (IOException ie) {
+                    ie.printStackTrace();
+                }
+            });
         }
 
         public void updateItem(Task task, boolean empty){
@@ -113,7 +130,14 @@ public class IncidentController {
         );
         listViewToDo.setItems(toDoItems);
         listViewToDo.setCellFactory(param -> new Cell());
+
+        listViewInProgress.setItems(inProgressItems);
+        listViewInProgress.setCellFactory(param -> new Cell());
+
+        listViewDone.setItems(doneItems);
+        listViewDone.setCellFactory(param -> new Cell());
     }
+
 
     @FXML
     public void addIncident(ActionEvent event) throws IOException {
@@ -133,7 +157,7 @@ public class IncidentController {
     }
 
     @FXML
-    public void disconnect(MouseEvent mouseEvent) {
+    public void disconnect(ActionEvent event) {
         String fxmlFile = "/fxml/LoginScreen.fxml";
         FXMLLoader loader = new FXMLLoader();
         try {
