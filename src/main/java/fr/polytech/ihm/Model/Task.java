@@ -124,6 +124,15 @@ public class Task {
 
     }
 
+    public void incrementResolved() {
+        if((this.resolvedLvl.get()+1)<=3){
+            this.resolvedLvl.set(this.resolvedLvl.get()+1);
+        }else{
+            this.disabled=true;
+        }
+
+    }
+
     public void upvoteTask(){
         this.upvoteProperty().setValue(this.upvote.getValue()+1);
     }

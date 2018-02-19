@@ -42,7 +42,7 @@ public class Data {
     public ArrayList<Task> getDataToDo(){
         ArrayList<Task> td = new ArrayList<Task>();
         for(Task t : ourInstance.tasks){
-            if(t.isToDo() && t.isDisabled()){
+            if(t.isToDo() && !t.isDisabled()){
                 td.add(t);
             }
         }
@@ -52,7 +52,7 @@ public class Data {
     public ArrayList<Task> getDataInProgress(){
         ArrayList<Task> ip = new ArrayList<Task>();
         for(Task t : ourInstance.tasks){
-            if(t.isInProgress() && t.isDisabled()){
+            if(t.isInProgress() && !t.isDisabled()){
                 ip.add(t);
             }
         }
@@ -62,7 +62,7 @@ public class Data {
     public ArrayList<Task> getDataDone(){
         ArrayList<Task> r = new ArrayList<Task>();
         for(Task t : ourInstance.tasks){
-            if(t.isResolved() && t.isDisabled()){
+            if(t.isResolved() && !t.isDisabled()){
                 r.add(t);
             }
         }
