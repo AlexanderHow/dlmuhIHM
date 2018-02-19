@@ -1,6 +1,7 @@
 package fr.polytech.ihm;
 
 import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
+import fr.polytech.ihm.Model.Data;
 import fr.polytech.ihm.Model.EnumCategory;
 import fr.polytech.ihm.Model.EnumLocation;
 import fr.polytech.ihm.Model.Task;
@@ -52,7 +53,7 @@ public class IncidentController {
 
     private Task currentTask;
 
-    private ObservableList<Task> toDoItems = FXCollections.observableArrayList();
+    private ObservableList<Task> toDoItems = FXCollections.observableArrayList(Data.getData());
 
     static class Cell extends ListCell<Task>{
         HBox hbox = new HBox();
@@ -104,6 +105,8 @@ public class IncidentController {
                 "En cours",
                 "Terminé"
         );
+        listViewToDo.setItems(toDoItems);
+        listViewToDo.setCellFactory(param -> new Cell());
     }
 
     @FXML
