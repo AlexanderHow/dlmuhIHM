@@ -1,5 +1,6 @@
 package fr.polytech.ihm;
 
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import fr.polytech.ihm.Model.EnumCategory;
 import fr.polytech.ihm.Model.EnumLocation;
 import fr.polytech.ihm.Model.Task;
@@ -15,6 +16,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -31,7 +36,7 @@ public class IncidentController {
     private ComboBox<String> resolutionIncident;
 
     @FXML
-    private Button userButton;
+    private Button decoButton;
 
     @FXML
     private ListView<Task> listViewToDo;
@@ -106,10 +111,11 @@ public class IncidentController {
         String fxmlFile = "/fxml/deposer.fxml";
         FXMLLoader loader = new FXMLLoader();
         try {
-            Stage stage = (Stage) addIncidentButton.getScene().getWindow();
-            Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlFile));
 
-            Scene scene = new Scene(rootNode);
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root, 700, 620);
+            Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -124,4 +130,19 @@ public class IncidentController {
         */
     }
 
+    @FXML
+    public void disconnect(MouseEvent mouseEvent) {
+        String fxmlFile = "/fxml/LoginScreen.fxml";
+        FXMLLoader loader = new FXMLLoader();
+        try {
+            Stage stage = (Stage) decoButton.getScene().getWindow();
+            Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
+
+            Scene scene = new Scene(rootNode);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
