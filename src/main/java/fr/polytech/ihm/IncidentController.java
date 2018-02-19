@@ -1,5 +1,6 @@
 package fr.polytech.ihm;
 
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import fr.polytech.ihm.Model.EnumCategory;
 import fr.polytech.ihm.Model.EnumLocation;
 import fr.polytech.ihm.Model.Task;
@@ -80,10 +81,11 @@ public class IncidentController {
         String fxmlFile = "/fxml/deposer.fxml";
         FXMLLoader loader = new FXMLLoader();
         try {
-            Stage stage = (Stage) addIncidentButton.getScene().getWindow();
-            Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlFile));
 
-            Scene scene = new Scene(rootNode);
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root, 700, 620);
+            Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
