@@ -63,13 +63,17 @@ public class IncidentController {
         Label date = new Label("");
         Label author = new Label("");
         Label location = new Label("");
-        Label emergencyLevel = new Label("");
+        Image emergencyLevel = new Image("/images/pastillergence.png");
+        ImageView emergencyViewer = new ImageView(emergencyLevel);
+
         Button goNext = new Button("→");
 
         public Cell(){
             super();
+            emergencyViewer.setFitHeight(30);
+            emergencyViewer.setFitWidth(30);
             vBox.getChildren().addAll(title, date, author, location);
-            vBox2.getChildren().addAll(emergencyLevel, goNext);
+            vBox2.getChildren().addAll(emergencyViewer, goNext);
             vBox2.setAlignment(Pos.CENTER);
             vBox2.setSpacing(10);
             hbox.setSpacing(20);
@@ -101,7 +105,20 @@ public class IncidentController {
                 date.setText(task.getDate());
                 author.setText(task.getAuthor());
                 location.setText(task.getLocation());
-                emergencyLevel.setText("" + task.getEmergencyLvl());
+                Image emergencyLevel;
+                switch (task.getEmergencyLvl()) {
+                    case 1:
+                        emergencyLevel = new Image("/images/green.png");
+                        emergencyViewer.setImage(emergencyLevel);
+                        break;
+                    case 2:
+                        emergencyLevel = new Image("/images/orange.png");
+                        emergencyViewer.setImage(emergencyLevel);
+                        break;
+                    case 3:
+                        emergencyLevel = new Image("/images/red.png");
+                        emergencyViewer.setImage(emergencyLevel);
+                }
                 setGraphic(hbox);
             }
         }
