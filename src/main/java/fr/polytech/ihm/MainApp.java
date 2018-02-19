@@ -26,7 +26,7 @@ public class MainApp extends Application {
         Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
 
         log.debug("Showing JFX scene");
-        Scene scene = new Scene(rootNode, 1200, 700);
+        Scene scene = new Scene(rootNode, 900, 700);
         stage.setTitle("Ecran de connexion");
         stage.setScene(scene);
         stage.show();
