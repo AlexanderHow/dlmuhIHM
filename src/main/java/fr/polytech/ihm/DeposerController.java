@@ -1,21 +1,31 @@
 package fr.polytech.ihm;
 
+import fr.polytech.ihm.Model.Data;
 import fr.polytech.ihm.Model.EnumCategory;
 import fr.polytech.ihm.Model.EnumLocation;
+import javafx.animation.Interpolator;
+import javafx.animation.PathTransition;
+import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.*;
 import javafx.stage.Modality;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 
 public class DeposerController {
 
+    @FXML
     public Label error;
     @FXML
     private TextField titleTextId;
@@ -24,7 +34,7 @@ public class DeposerController {
     private TextField whoTextId;
 
     @FXML
-    private ComboBox<String> cBoxEmergencyId;
+    private ComboBox<Integer> cBoxEmergencyId;
 
     @FXML
     private TextField hourTextId;
@@ -47,9 +57,11 @@ public class DeposerController {
     @FXML
     private Button exeButton;
 
+    private TranslateTransition anim =new TranslateTransition();
+
     @FXML
     private void initialize(){
-        cBoxEmergencyId.getItems().addAll("1","2","3");
+        cBoxEmergencyId.getItems().addAll(1,2,3);
 
         for (EnumLocation l : EnumLocation.values()) {
             cBoxLocalisationId.getItems().add(l.toString());
@@ -57,6 +69,7 @@ public class DeposerController {
         for (EnumCategory c : EnumCategory.values()) {
             cBoxCategoryId.getItems().add(c.toString());
         }
+        wizz();
     }
 
     public void delete(MouseEvent mouseEvent) {
@@ -76,9 +89,20 @@ public class DeposerController {
     public void submit(MouseEvent mouseEvent) {
         String fxmlFile = "/fxml/list_incidents.fxml";
         FXMLLoader loader = new FXMLLoader();
-        if (titleTextId.getText().isEmpty() || whoTextId.getText().isEmpty() || hourTextId.getText().isEmpty() ){
+        if (titleTextId.getText().isEmpty() || whoTextId.getText().isEmpty() || hourTextId.getText().isEmpty() ||dateId.getValue() == null
+                || cBoxCategoryId.getValue()==null || cBoxEmergencyId.getValue()==null || cBoxLocalisationId.getValue()==null){
             error.setVisible(true);
+            anim.play();
         }else {
+            String title = titleTextId.getText();
+            String who = whoTextId.getText();
+            int emergency = cBoxEmergencyId.getValue();
+            String hour = hourTextId.getText();
+            String date = dateId.getValue().toString();
+            String location = cBoxLocalisationId.getValue();
+            String category = cBoxCategoryId.getValue();
+            String description = descriptionId.getText();
+            Data.addTask(title,who,null,category,date,location,description,0,emergency);
             try {
                 Stage stage = (Stage) exeButton.getScene().getWindow();
                 Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
@@ -90,5 +114,22 @@ public class DeposerController {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void escapePressed(KeyEvent keyEvent) throws Exception{
+        if(keyEvent.getCode() == KeyCode.ESCAPE) {
+            Stage stage = (Stage) exeButton.getScene().getWindow();
+            stage.close();
+        }
+    }
+
+    public void wizz(){
+        TranslateTransition t = new TranslateTransition();
+        t.setNode(error);
+        t.setToX(-30);
+        t.setAutoReverse(true);
+        t.setCycleCount(6);
+        t.setRate(4);
+        anim=t;
     }
 }

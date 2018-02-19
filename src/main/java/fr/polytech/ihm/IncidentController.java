@@ -67,7 +67,7 @@ public class IncidentController {
         Label author = new Label("");
         Label location = new Label("");
         Label emergencyLevel = new Label("");
-        Button goNext = new Button("->");
+        Button goNext = new Button("→");
 
         public Cell(){
             super();
@@ -144,11 +144,10 @@ public class IncidentController {
         String fxmlFile = "/fxml/deposer.fxml";
         FXMLLoader loader = new FXMLLoader();
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlFile));
+            Stage stage = (Stage) addIncidentButton.getScene().getWindow();
+            Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
 
-            Parent root = fxmlLoader.load();
-            Scene scene = new Scene(root, 700, 620);
-            Stage stage = new Stage();
+            Scene scene = new Scene(rootNode);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
