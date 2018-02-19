@@ -39,9 +39,7 @@ public class LoginController {
 
     private void accountCheck() throws Exception{
         LoginCheck loginCheck = new LoginCheck(username.getText(), password.getText());
-        if(loginCheck.isAdmin())
-            this.loadView("/fxml/list_incidents.fxml", loginCheck.isAdmin());
-        if(loginCheck.isValid())
+        if(loginCheck.isAdmin() || loginCheck.isValid())
             this.loadView("/fxml/list_incidents.fxml", loginCheck.isAdmin());
         else {
             username.setText("");
@@ -58,7 +56,7 @@ public class LoginController {
             Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
             Scene scene = new Scene(rootNode);
             IncidentController controller = loader.<IncidentController>getController();
-            //controller.setAdmin(isAdmin);
+            controller.setAdminMode(isAdmin);
             stage.setTitle("Liste des incidents");
             stage.setScene(scene);
             stage.show();

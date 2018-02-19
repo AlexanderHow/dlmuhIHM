@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.polytech.ihm.VisualiserController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.polytech.ihm.VisualiserController">
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
@@ -70,16 +70,13 @@
                   <Font name="Calibri" size="18.0" />
                </font>
             </Text>
-            <TextArea id="descriptionVisuAdmin" fx:id="descriptionVisuAdmin" editable="false" prefHeight="200.0" prefWidth="200.0">
-               <VBox.margin>
-                  <Insets bottom="40.0" left="150.0" right="150.0" />
-               </VBox.margin>
-               <padding>
-                  <Insets left="15.0" right="15.0" top="15.0" />
-               </padding>
+            <TextArea fx:id="descriptionVisuAdmin" prefHeight="200.0" prefWidth="200.0">
                <font>
-                  <Font name="Calibri" size="18.0" />
+                  <Font size="18.0" />
                </font>
+               <VBox.margin>
+                  <Insets bottom="30.0" left="100.0" right="100.0" />
+               </VBox.margin>
             </TextArea>
             <GridPane>
               <columnConstraints>
@@ -93,7 +90,7 @@
                   <Insets left="150.0" right="150.0" />
                </VBox.margin>
                <children>
-                  <Button id="upvoteVisuAdmin" fx:id="upvoteVisuAdmin" mnemonicParsing="false" text="Upvote" GridPane.columnIndex="1" GridPane.halignment="RIGHT" onMouseClicked="#onClickUpvote">
+                  <Button id="upvoteVisuAdmin" fx:id="upvoteVisuAdmin" mnemonicParsing="false" onMouseClicked="#onClickUpvote" text="Upvote" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                      <font>
                         <Font name="Calibri" size="18.0" />
                      </font>
@@ -134,7 +131,7 @@
             </ImageView>
             <Button id="returnVisuAdmin" fx:id="returnVisuAdmin" mnemonicParsing="false" onMouseClicked="#onClickReturn" prefHeight="60.0" prefWidth="60.0" text="&lt;">
                <GridPane.margin>
-                  <Insets />
+                  <Insets left="10.0" top="10.0" />
                </GridPane.margin>
             </Button>
          </children>
@@ -152,7 +149,7 @@
             <Insets bottom="50.0" />
          </BorderPane.margin>
          <children>
-            <Button id="resolvedVisuAdmin" fx:id="resolvedVisuAdmin" mnemonicParsing="false" text="Delete" GridPane.halignment="CENTER" onMouseClicked="#onClickDelete">
+            <Button id="resolvedVisuAdmin" fx:id="resolvedVisuAdmin" mnemonicParsing="false" onMouseClicked="#onClickDelete" text="Delete" GridPane.halignment="CENTER">
                <font>
                   <Font name="Calibri" size="24.0" />
                </font>

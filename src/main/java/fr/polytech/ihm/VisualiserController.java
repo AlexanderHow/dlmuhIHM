@@ -61,16 +61,17 @@ public class VisualiserController {
 
     @FXML
     public void initialize(){
-        this.setAdminMode(true);
         if(!adminMode){
             this.resolvedVisuAdmin.setDisable(true);
             this.resolvedVisuAdmin.setVisible(false);
         }
-        Data.addTask("Test Task","Alexandre","Françis","Test",new Date().toString(),"Polytech", "This is not Sparta but just a test AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAhhhhhhh !",2,2);
-        this.task=Data.getById(1);
 
+        this.refresh();
+    }
+
+    private void refresh(){
         if(this.task!=null){
-            this.titleVisuAdmin.setText("Titlt Task: " +this.task.titleProperty().get());
+            this.titleVisuAdmin.setText("Title Task: " +this.task.titleProperty().get());
             this.authorVisuAdmin.setText("Author: "+this.task.authorProperty().get());
             this.assigneeVisuAdmin.setText("Assignee: "+this.task.assigneeProperty().get());
             this.categoryVisuAdmin.setText("Category: "+this.task.categoryProperty().get());
@@ -81,16 +82,21 @@ public class VisualiserController {
             this.displayUpvoteVisuAdmin.textProperty().bindBidirectional(this.task.upvoteProperty(),new NumberStringConverter());
         }else{
             //TODO : gest error
-            this.titleVisuAdmin.setText("Titlt Task: Error");
+            this.titleVisuAdmin.setText("Title Task: Error");
         }
     }
 
     public void setTask(Task t){
         this.task=t;
+        this.refresh();
     }
 
     public void setAdminMode(boolean admin){
         this.adminMode=admin;
+        if(adminMode){
+            this.resolvedVisuAdmin.setDisable(false);
+            this.resolvedVisuAdmin.setVisible(true);
+        }
     }
 
     public void onClickReturn(MouseEvent mouseEvent) {
@@ -100,7 +106,8 @@ public class VisualiserController {
         try {
             Stage stage=(Stage) returnVisuAdmin.getScene().getWindow();
             Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
-
+            IncidentController controller = loader.<IncidentController>getController();
+            controller.setAdminMode(adminMode);
             Scene scene = new Scene(rootNode);
             stage.setScene(scene);
             stage.show();
