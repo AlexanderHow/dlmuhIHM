@@ -8,12 +8,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class DeposerController {
 
+    public Label error;
     @FXML
     private TextField titleTextId;
 
@@ -73,15 +76,19 @@ public class DeposerController {
     public void submit(MouseEvent mouseEvent) {
         String fxmlFile = "/fxml/list_incidents.fxml";
         FXMLLoader loader = new FXMLLoader();
-        try {
-            Stage stage=(Stage) exeButton.getScene().getWindow();
-            Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
+        if (titleTextId.getText().isEmpty() || whoTextId.getText().isEmpty() || hourTextId.getText().isEmpty() ){
+            error.setVisible(true);
+        }else {
+            try {
+                Stage stage = (Stage) exeButton.getScene().getWindow();
+                Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
 
-            Scene scene = new Scene(rootNode);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
+                Scene scene = new Scene(rootNode);
+                stage.setScene(scene);
+                stage.showAndWait();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

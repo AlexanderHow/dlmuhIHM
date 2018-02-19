@@ -46,7 +46,7 @@ public class LoginController {
         else {
             username.setText("");
             password.setText("");
-            errorText.setText("Pas foutu de mettre un bon mot de passe ou un bon nom d'utilisateur! Tête de bite!");
+            errorText.setText("Identifiant ou Mot de passe erronés");
         }
     }
 
