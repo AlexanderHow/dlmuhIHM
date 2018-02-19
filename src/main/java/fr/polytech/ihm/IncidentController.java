@@ -172,6 +172,64 @@ public class IncidentController {
         }
     }
 
+    @FXML
+    void displayTask(MouseEvent event) {
+        String fxmlFile = "/fxml/visuadmin.fxml";
+        FXMLLoader loader = new FXMLLoader();
+        try {
+            Stage stage = (Stage) listViewToDo.getScene().getWindow();
+            Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
+            Scene scene = new Scene(rootNode);
+            VisualiserController controller = loader.<VisualiserController>getController();
+            controller.setAdminMode(this.adminMode);
+            controller.setTask(listViewToDo.getSelectionModel().getSelectedItem());
+            stage.setTitle("Liste des incidents");
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void displayTaskDone(MouseEvent event) {
+        String fxmlFile = "/fxml/visuadmin.fxml";
+        FXMLLoader loader = new FXMLLoader();
+        try {
+            Stage stage = (Stage) listViewDone.getScene().getWindow();
+            Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
+            Scene scene = new Scene(rootNode);
+            VisualiserController controller = loader.<VisualiserController>getController();
+            controller.setAdminMode(this.adminMode);
+            controller.setTask(listViewDone.getSelectionModel().getSelectedItem());
+            stage.setTitle("Liste des incidents");
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void displayTaskInProgress(MouseEvent event) {
+        String fxmlFile = "/fxml/visuadmin.fxml";
+        FXMLLoader loader = new FXMLLoader();
+        try {
+            Stage stage = (Stage) listViewInProgress.getScene().getWindow();
+            Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
+            Scene scene = new Scene(rootNode);
+            VisualiserController controller = loader.<VisualiserController>getController();
+            controller.setAdminMode(this.adminMode);
+            controller.setTask(listViewInProgress.getSelectionModel().getSelectedItem());
+            stage.setTitle("Liste des incidents");
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public void setAdminMode(boolean b){
         this.adminMode=b;
     }
