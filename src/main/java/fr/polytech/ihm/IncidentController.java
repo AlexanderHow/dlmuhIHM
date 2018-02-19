@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -58,6 +59,7 @@ public class IncidentController {
     static class Cell extends ListCell<Task>{
         HBox hbox = new HBox();
         VBox vBox = new VBox();
+        VBox vBox2 = new VBox();
         Label title = new Label("");
         Label date = new Label("");
         Label author = new Label("");
@@ -68,7 +70,11 @@ public class IncidentController {
         public Cell(){
             super();
             vBox.getChildren().addAll(title, date, author, location);
-            hbox.getChildren().addAll(vBox, emergencyLevel, goNext);
+            vBox2.getChildren().addAll(emergencyLevel, goNext);
+            vBox2.setAlignment(Pos.CENTER);
+            vBox2.setSpacing(10);
+            hbox.setSpacing(20);
+            hbox.getChildren().addAll(vBox, vBox2);
         }
 
         public void updateItem(Task task, boolean empty){
