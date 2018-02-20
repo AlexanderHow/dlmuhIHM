@@ -16,23 +16,36 @@
    <children>
       <VBox layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane prefHeight="135.0" prefWidth="900.0">
+            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Button fx:id="returnVisuAdmin" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#onClickReturn" text="←">
-                     <font>
-                        <Font size="18.0" />
-                     </font></Button>
-                  <Label fx:id="titleVisuAdmin" layoutX="313.0" layoutY="14.0" text="Titre de la tâche">
-                     <font>
-                        <Font size="36.0" />
-                     </font>
-                  </Label>
-                  <ImageView fx:id="imgEmergencyVisuAdmin" fitHeight="100.0" fitWidth="100.0" layoutX="786.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" />
+                  <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Button fx:id="returnVisuAdmin" mnemonicParsing="false" onMouseClicked="#onClickReturn" text="←">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label fx:id="titleVisuAdmin" text="Titre de la tâche">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <ImageView fx:id="imgEmergencyVisuAdmin" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                     <HBox.margin>
+                        <Insets right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </VBox>
                </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </AnchorPane>
+            </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" VBox.vgrow="ALWAYS">
                <children>
                   <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" HBox.hgrow="ALWAYS">
