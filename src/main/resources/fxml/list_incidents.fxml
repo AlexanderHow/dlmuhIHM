@@ -95,7 +95,7 @@
                         <DropShadow />
                      </effect>
                   </GridPane>
-                  <ImageView fx:id="arrow" fitHeight="25.0" fitWidth="215.0" layoutX="150.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" scaleX="1.5" scaleY="1.5" visible="false">
+                  <ImageView fx:id="arrow" fitHeight="25.0" fitWidth="215.0" layoutX="175.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" scaleX="1.5" scaleY="1.5" visible="false">
                      <image>
                         <Image url="@/images/arrow.png" />
                      </image>
