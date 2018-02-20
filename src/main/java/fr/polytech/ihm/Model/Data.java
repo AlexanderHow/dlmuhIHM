@@ -70,4 +70,20 @@ public class Data {
         }
         return r;
     }
+
+    public ArrayList<Task> getDataFiltered(int state, String search, String cate ,String loc){
+
+        ArrayList<Task> r = new ArrayList<Task>();
+        for(Task t : ourInstance.tasks){
+            if(!t.isDisabled() &&
+                    (t.getResolvedLvl()==state) &&
+                    (search.equals("") || t.getTitle().contains(search)) &&
+                    (cate==null || t.getCategory().equals(cate)) &&
+                    (loc==null || t.getLocation().equals(cate))
+                    ){
+                r.add(t);
+            }
+        }
+        return r;
+    }
 }

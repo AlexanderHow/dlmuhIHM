@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -52,6 +53,9 @@ public class IncidentController {
 
     @FXML
     private Button addIncidentButton;
+
+    @FXML
+    private TextField searchBar;
 
     private boolean adminMode = false;
 
@@ -272,6 +276,13 @@ public class IncidentController {
                 arrow.setVisible(false);
             });
         }
+    }
+
+    @FXML
+    void matchSearchAndData(KeyEvent event) {
+        this.toDoItems=FXCollections.observableArrayList(Data.getInstance().getDataFiltered(1,searchBar.getText(),this.categoryIncident.getSelectionModel().getSelectedItem(),this.locationIncident.getSelectionModel().getSelectedItem()));
+        this.inProgressItems=FXCollections.observableArrayList(Data.getInstance().getDataFiltered(1,searchBar.getText(),this.categoryIncident.getSelectionModel().getSelectedItem(),this.locationIncident.getSelectionModel().getSelectedItem()));
+        this.doneItems=FXCollections.observableArrayList(Data.getInstance().getDataFiltered(1,searchBar.getText(),this.categoryIncident.getSelectionModel().getSelectedItem(),this.locationIncident.getSelectionModel().getSelectedItem()));
     }
 
 

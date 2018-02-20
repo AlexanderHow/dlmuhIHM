@@ -97,6 +97,10 @@ public class Task {
         return emergencyLvl.get();
     }
 
+    public int getResolvedLvl() {
+        return resolvedLvl.get();
+    }
+
     public IntegerProperty emergencyLvlProperty() {
         return emergencyLvl;
     }
