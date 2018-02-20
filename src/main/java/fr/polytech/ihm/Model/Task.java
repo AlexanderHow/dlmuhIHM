@@ -121,7 +121,6 @@ public class Task {
         }else{
             this.disabled=true;
         }
-
     }
 
     public void incrementResolved() {
@@ -130,7 +129,12 @@ public class Task {
         }else{
             this.disabled=true;
         }
+    }
 
+    public void decrementResolved() {
+        if((this.resolvedLvl.get())>1) {
+            this.resolvedLvl.set(this.resolvedLvl.get() - 1);
+        }
     }
 
     public void upvoteTask(){

@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -165,4 +166,11 @@ public class VisualiserController {
     }
 
 
+    public void retrograde(ActionEvent actionEvent) {
+        task.decrementResolved();
+    }
+
+    public void supprSaveDisplay(InputMethodEvent inputMethodEvent) {
+        savedDisplay.setVisible(false);
+    }
 }
