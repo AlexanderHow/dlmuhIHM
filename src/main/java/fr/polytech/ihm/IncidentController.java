@@ -85,7 +85,7 @@ public class IncidentController {
 
         Button goNext = new Button("→");
 
-        public Cell() {
+        public Cell(IncidentController ic) {
             super();
             emergencyViewer.setFitHeight(30);
             emergencyViewer.setFitWidth(30);
@@ -103,16 +103,11 @@ public class IncidentController {
                 getItem().incrementResolved();
                 String fxmlFile = "/fxml/list_incidents.fxml";
                 FXMLLoader loader = new FXMLLoader();
-                try {
-                    Stage stage = (Stage) goNext.getScene().getWindow();
-                    Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
 
-                    Scene scene = new Scene(rootNode);
-                    stage.setScene(scene);
-                    stage.show();
-                } catch (IOException ie) {
-                    ie.printStackTrace();
-                }
+                ic.matching(ic.getSearchBar().getText(),
+                       ic.getCategoryIncident().getSelectionModel().getSelectedItem(),
+                        ic.getLocationIncident().getSelectionModel().getSelectedItem());
+
             });
         }
 
@@ -153,20 +148,21 @@ public class IncidentController {
     @FXML
     public void initialize() throws IOException {
         for (EnumCategory cat : EnumCategory.values()) {
-            categoryIncident.getItems().add(cat.toString());
+            categoryIncident.getItems().add(cat.getLibelle());
         }
+        categoryIncident.getItems().add("");
         for (EnumLocation loc : EnumLocation.values()) {
             locationIncident.getItems().add(loc.toString());
         }
-
+        locationIncident.getItems().add("");
         listViewToDo.setItems(toDoItems);
-        listViewToDo.setCellFactory(param -> new Cell());
+        listViewToDo.setCellFactory(param -> new Cell(this));
 
         listViewInProgress.setItems(inProgressItems);
-        listViewInProgress.setCellFactory(param -> new Cell());
+        listViewInProgress.setCellFactory(param -> new Cell(this));
 
         listViewDone.setItems(doneItems);
-        listViewDone.setCellFactory(param -> new Cell());
+        listViewDone.setCellFactory(param -> new Cell(this));
 
         this.categoryIncident.setOnAction((event -> {
             this.filterCategory=this.categoryIncident.getSelectionModel().getSelectedItem();
@@ -191,7 +187,8 @@ public class IncidentController {
         try {
             Stage stage = (Stage) addIncidentButton.getScene().getWindow();
             Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
-
+            DeposerController controller = loader.<DeposerController>getController();
+            controller.setAdminMode(this.adminMode);
             Scene scene = new Scene(rootNode);
             stage.setScene(scene);
             stage.show();
@@ -314,15 +311,26 @@ public class IncidentController {
 
     public void refreshData(){
         this.listViewToDo.setItems(toDoItems);
-        this.listViewToDo.setCellFactory(param -> new Cell());
+        this.listViewToDo.setCellFactory(param -> new Cell(this));
 
         this.listViewInProgress.setItems(inProgressItems);
-        this.listViewInProgress.setCellFactory(param -> new Cell());
+        this.listViewInProgress.setCellFactory(param -> new Cell(this));
 
         this.listViewDone.setItems(doneItems);
-        this.listViewDone.setCellFactory(param -> new Cell());
+        this.listViewDone.setCellFactory(param -> new Cell(this));
     }
 
+    public TextField getSearchBar() {
+        return searchBar;
+    }
+
+    public ComboBox<String> getCategoryIncident() {
+        return categoryIncident;
+    }
+
+    public ComboBox<String> getLocationIncident() {
+        return locationIncident;
+    }
 
     public void setAdminMode(boolean b) {
         this.adminMode = b;

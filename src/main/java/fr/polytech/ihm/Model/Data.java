@@ -77,9 +77,9 @@ public class Data {
         for(Task t : ourInstance.tasks){
             if(!t.isDisabled() &&
                     (t.getResolvedLvl()==state) &&
-                    (search.equals("") || t.getTitle().contains(search)) &&
-                    (cate.equals("") || t.getCategory().equals(cate)) &&
-                    (loc.equals("") || t.getLocation().equals(loc))
+                    (search==null || search.equals("") || t.getTitle().contains(search)) &&
+                    (cate==null || cate.equals("") || t.getCategory().equals(cate)) &&
+                    (loc==null || loc.equals("") || t.getLocation().equals(loc))
                     ){
                 r.add(t);
             }

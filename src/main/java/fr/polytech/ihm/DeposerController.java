@@ -62,6 +62,7 @@ public class DeposerController {
     private Button exeButton;
 
     private TranslateTransition anim =new TranslateTransition();
+    private boolean admin=false;
 
     @FXML
     private void initialize(){
@@ -74,6 +75,10 @@ public class DeposerController {
             cBoxCategoryId.getItems().add(c.toString());
         }
         wizz();
+    }
+
+    public void setAdminMode(boolean b){
+        this.admin=b;
     }
 
     public void delete(MouseEvent mouseEvent) {
@@ -110,7 +115,8 @@ public class DeposerController {
             try {
                 Stage stage = (Stage) exeButton.getScene().getWindow();
                 Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
-
+                IncidentController controller = loader.<IncidentController>getController();
+                controller.setAdminMode(this.admin);
                 Scene scene = new Scene(rootNode);
                 stage.setScene(scene);
                 stage.show();
@@ -142,7 +148,8 @@ public class DeposerController {
         try {
             Stage stage = (Stage) returnButton.getScene().getWindow();
             Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
-
+            IncidentController controller = loader.<IncidentController>getController();
+            controller.setAdminMode(this.admin);
             Scene scene = new Scene(rootNode);
             stage.setScene(scene);
             stage.show();
