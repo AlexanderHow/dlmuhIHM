@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -23,43 +24,43 @@ import java.util.Date;
 
 public class VisualiserController {
     @FXML
-    private Text titleVisuAdmin;
+    private Button returnVisuAdmin;
 
     @FXML
-    private Text authorVisuAdmin;
-
-    @FXML
-    private Text assigneeVisuAdmin;
-
-    @FXML
-    private Text categoryVisuAdmin;
-
-    @FXML
-    private Text dateVisuAdmin;
-
-    @FXML
-    private Text locationVisuAdmin;
-
-    @FXML
-    private TextArea descriptionVisuAdmin;
-
-    @FXML
-    private Button upvoteVisuAdmin;
-
-    @FXML
-    private Text displayUpvoteVisuAdmin;
+    private Label titleVisuAdmin;
 
     @FXML
     private ImageView imgEmergencyVisuAdmin;
 
     @FXML
-    private Button returnVisuAdmin;
+    private Label authorVisuAdmin;
+
+    @FXML
+    private Label assigneeVisuAdmin;
+
+    @FXML
+    private Label categoryVisuAdmin;
+
+    @FXML
+    private Label dateVisuAdmin;
+
+    @FXML
+    private Label locationVisuAdmin;
+
+    @FXML
+    private TextArea descriptionVisuAdmin;
+
+    @FXML
+    private Label displayUpvoteVisuAdmin;
+
+    @FXML
+    private Button upvoteVisuAdmin;
+
+    @FXML
+    private Button savedDisplay;
 
     @FXML
     private Button resolvedVisuAdmin;
-
-    @FXML
-    private Text savedDisplay;
 
     private Task task;
     private boolean alreadyUpvoted=false;
@@ -77,12 +78,12 @@ public class VisualiserController {
 
     private void refresh(){
         if(this.task!=null){
-            this.titleVisuAdmin.setText("Title Task: " +this.task.titleProperty().get());
-            this.authorVisuAdmin.setText("Author: "+this.task.authorProperty().get());
-            this.assigneeVisuAdmin.setText("Assignee: "+this.task.assigneeProperty().get());
-            this.categoryVisuAdmin.setText("Category: "+this.task.categoryProperty().get());
+            this.titleVisuAdmin.setText(this.task.titleProperty().get());
+            this.authorVisuAdmin.setText("Auteur: "+this.task.authorProperty().get());
+            this.assigneeVisuAdmin.setText("Assigné: "+this.task.assigneeProperty().get());
+            this.categoryVisuAdmin.setText("Catégorie: "+this.task.categoryProperty().get());
             this.dateVisuAdmin.setText("Date: "+this.task.dateProperty().get());
-            this.locationVisuAdmin.setText("Location: "+this.task.locationProperty().get());
+            this.locationVisuAdmin.setText("Lieu: "+this.task.locationProperty().get());
             this.descriptionVisuAdmin.setText(this.task.descriptionProperty().get());
             //this.displayUpvoteVisuAdmin.setText("+"+this.task.upvoteProperty().toString());
             this.displayUpvoteVisuAdmin.textProperty().bindBidirectional(this.task.upvoteProperty(),new NumberStringConverter());
@@ -119,6 +120,7 @@ public class VisualiserController {
         }
     }
 
+    @FXML
     public void onClickReturn(MouseEvent mouseEvent) {
 
         String fxmlFile = "/fxml/list_incidents.fxml";
@@ -136,6 +138,7 @@ public class VisualiserController {
         }
     }
 
+    @FXML
     public void onClickUpvote(MouseEvent mouseEvent){
         if(!alreadyUpvoted){
             this.task.upvoteTask();
@@ -148,14 +151,18 @@ public class VisualiserController {
         }
     }
 
+    @FXML
     public void onClickDelete(MouseEvent mouseEvent){
         if(adminMode){
             this.task.deleteTask();
         }
     }
 
-    public void saveDescription(ActionEvent actionEvent) {
+    @FXML
+    public void saveDescription(MouseEvent mouseEvent) {
         task.setNewDescription(new SimpleStringProperty(descriptionVisuAdmin.getText()));
         savedDisplay.setVisible(true);
     }
+
+
 }
