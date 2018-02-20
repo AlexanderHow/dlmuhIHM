@@ -12,16 +12,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#escapePressed" prefHeight="727.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.polytech.ihm.DeposerController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#escapePressed" prefHeight="611.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.polytech.ihm.DeposerController">
   <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <center>
-            <VBox alignment="CENTER" prefHeight="721.0" prefWidth="335.0" spacing="30.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" prefHeight="516.0" prefWidth="335.0" spacing="30.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label alignment="CENTER" text="Ajout/Modification de ticket">
+                  <Label alignment="CENTER" prefHeight="0.0" prefWidth="236.0" text="Ajout/Modification de ticket">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
                   </Label>
                   <TextField fx:id="titleTextId" maxWidth="200.0" promptText="Titre" />
                   <TextField fx:id="whoTextId" maxWidth="200.0" promptText="Qui" />
@@ -49,6 +52,7 @@
                   </TextArea>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                      <children>
+                        <Button fx:id="returnButton" mnemonicParsing="false" onAction="#backToList" text="Annuler" />
                         <Button fx:id="clearButton" mnemonicParsing="false" onMouseClicked="#delete" text="Effacer" />
                         <Button fx:id="exeButton" mnemonicParsing="false" onMouseClicked="#submit" text="Déposer/Sauvegarder">
                            <HBox.margin>

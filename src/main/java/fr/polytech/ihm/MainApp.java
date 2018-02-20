@@ -29,6 +29,7 @@ public class MainApp extends Application {
         Scene scene = new Scene(rootNode);
         stage.setTitle("Ecran de connexion");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 }
