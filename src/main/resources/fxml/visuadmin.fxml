@@ -129,7 +129,7 @@
                <children>
                   <Label fx:id="displayUpvoteVisuAdmin" text="Label" />
                   <Button fx:id="upvoteVisuAdmin" mnemonicParsing="false" onMouseClicked="#onClickUpvote" text="Upvote" HBox.hgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" onAction="#retrograde" text="Rétrograder" />
+                  <Button fx:id="retroButton" mnemonicParsing="false" onAction="#retrograde" text="Rétrograder" />
                   <Button fx:id="saveButton" mnemonicParsing="false" onMouseClicked="#saveDescription" text="Sauvegarder les informations complémentaires" />
                   <Text fx:id="saveText" fill="#22d019" strokeType="OUTSIDE" strokeWidth="0.0" text="Saved" visible="false" />
                </children>
