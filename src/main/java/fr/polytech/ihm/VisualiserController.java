@@ -16,6 +16,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -141,7 +143,7 @@ public class VisualiserController {
     }
 
     @FXML
-    public void onClickReturn(MouseEvent mouseEvent) {
+    public void onClickReturn(ActionEvent actionEvent) {
 
         String fxmlFile = "/fxml/list_incidents.fxml";
         FXMLLoader loader = new FXMLLoader();
@@ -176,19 +178,7 @@ public class VisualiserController {
         if(adminMode){
             this.task.deleteTask();
         }
-        String fxmlFile = "/fxml/list_incidents.fxml";
-        FXMLLoader loader = new FXMLLoader();
-        try {
-            Stage stage=(Stage) returnVisuAdmin.getScene().getWindow();
-            Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
-            IncidentController controller = loader.<IncidentController>getController();
-            controller.setAdminMode(adminMode);
-            Scene scene = new Scene(rootNode);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        onClickReturn(new ActionEvent());
     }
 
     @FXML
@@ -200,19 +190,7 @@ public class VisualiserController {
 
     public void retrograde(ActionEvent actionEvent) {
         task.decrementResolved();
-        String fxmlFile = "/fxml/list_incidents.fxml";
-        FXMLLoader loader = new FXMLLoader();
-        try {
-            Stage stage=(Stage) returnVisuAdmin.getScene().getWindow();
-            Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
-            IncidentController controller = loader.<IncidentController>getController();
-            controller.setAdminMode(adminMode);
-            Scene scene = new Scene(rootNode);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        onClickReturn(new ActionEvent());
     }
 
     public void supprSaveDisplay(MouseEvent mouseEvent) {
@@ -225,5 +203,11 @@ public class VisualiserController {
         assigneeVisuAdmin.setText(" "+who);
         reassignField.setText("");
 
+    }
+
+    public void escapePressed(KeyEvent keyEvent) {
+        if(keyEvent.getCode() == KeyCode.ESCAPE) {
+            onClickReturn(new ActionEvent());
+        }
     }
 }
