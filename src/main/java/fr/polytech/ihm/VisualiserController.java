@@ -12,9 +12,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -66,6 +69,11 @@ public class VisualiserController {
     @FXML
     private Button retroButton;
 
+    @FXML
+    private TextField reassignField;
+
+    @FXML Button reassignButton;
+
     private Task task;
     private boolean alreadyUpvoted=false;
     private boolean adminMode=false;
@@ -75,6 +83,10 @@ public class VisualiserController {
         if(!adminMode){
             this.resolvedVisuAdmin.setDisable(true);
             this.resolvedVisuAdmin.setVisible(false);
+            this.reassignButton.setDisable(true);
+            this.reassignButton.setVisible(false);
+            this.reassignField.setDisable(true);
+            this.reassignField.setVisible(false);
         }
         this.refresh();
     }
@@ -86,7 +98,7 @@ public class VisualiserController {
             }
             this.titleVisuAdmin.setText(" " + this.task.titleProperty().get());
             this.authorVisuAdmin.setText(" "+this.task.authorProperty().get());
-            this.assigneeVisuAdmin.setText(" "+this.task.assigneeProperty().get());
+            this.assigneeVisuAdmin.setText(this.task.assigneeProperty().get()!=null ? " "+this.task.assigneeProperty().get() : " Personne");
             this.categoryVisuAdmin.setText(" "+this.task.categoryProperty().get());
             this.dateVisuAdmin.setText(" "+this.task.dateProperty().get());
             this.locationVisuAdmin.setText(" "+this.task.locationProperty().get());
@@ -123,11 +135,15 @@ public class VisualiserController {
         if(adminMode){
             this.resolvedVisuAdmin.setDisable(false);
             this.resolvedVisuAdmin.setVisible(true);
+            this.reassignField.setDisable(false);
+            this.reassignField.setVisible(true);
+            this.reassignButton.setDisable(false);
+            this.reassignButton.setVisible(true);
         }
     }
 
     @FXML
-    public void onClickReturn(MouseEvent mouseEvent) {
+    public void onClickReturn(ActionEvent actionEvent) {
 
         String fxmlFile = "/fxml/list_incidents.fxml";
         FXMLLoader loader = new FXMLLoader();
@@ -162,46 +178,36 @@ public class VisualiserController {
         if(adminMode){
             this.task.deleteTask();
         }
-        String fxmlFile = "/fxml/list_incidents.fxml";
-        FXMLLoader loader = new FXMLLoader();
-        try {
-            Stage stage=(Stage) returnVisuAdmin.getScene().getWindow();
-            Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
-            IncidentController controller = loader.<IncidentController>getController();
-            controller.setAdminMode(adminMode);
-            Scene scene = new Scene(rootNode);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        onClickReturn(new ActionEvent());
     }
 
     @FXML
     public void saveDescription(MouseEvent mouseEvent) {
-        task.setNewDescription(new SimpleStringProperty(descriptionVisuAdmin.getText()));
+        task.setNewDescription(descriptionVisuAdmin.getText());
         saveText.setVisible(true);
     }
 
 
     public void retrograde(ActionEvent actionEvent) {
         task.decrementResolved();
-        String fxmlFile = "/fxml/list_incidents.fxml";
-        FXMLLoader loader = new FXMLLoader();
-        try {
-            Stage stage=(Stage) returnVisuAdmin.getScene().getWindow();
-            Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
-            IncidentController controller = loader.<IncidentController>getController();
-            controller.setAdminMode(adminMode);
-            Scene scene = new Scene(rootNode);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        onClickReturn(new ActionEvent());
     }
 
     public void supprSaveDisplay(MouseEvent mouseEvent) {
         saveText.setVisible(false);
+    }
+
+    public void reassign(ActionEvent actionEvent) {
+        String who = reassignField.getText().toString();
+        task.reassign(who);
+        assigneeVisuAdmin.setText(" "+who);
+        reassignField.setText("");
+
+    }
+
+    public void escapePressed(KeyEvent keyEvent) {
+        if(keyEvent.getCode() == KeyCode.ESCAPE) {
+            onClickReturn(new ActionEvent());
+        }
     }
 }

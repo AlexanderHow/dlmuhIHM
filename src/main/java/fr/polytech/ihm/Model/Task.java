@@ -163,7 +163,9 @@ public class Task {
         return disabled;
     }
 
-    public void setNewDescription (StringProperty newDescription){
-        this.description=newDescription;
+    public void setNewDescription (String newDescription){
+        this.description=new SimpleStringProperty(newDescription);
     }
+
+    public void reassign (String who) {this.assignee = new SimpleStringProperty(who);}
 }

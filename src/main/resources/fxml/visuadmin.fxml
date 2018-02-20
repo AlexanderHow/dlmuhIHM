@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -12,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.polytech.ihm.VisualiserController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#escapePressed" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.polytech.ihm.VisualiserController">
    <children>
       <VBox layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -20,7 +21,7 @@
                <children>
                   <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button fx:id="returnVisuAdmin" mnemonicParsing="false" onMouseClicked="#onClickReturn" text="←">
+                        <Button fx:id="returnVisuAdmin" mnemonicParsing="false" onAction="#onClickReturn" text="←">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -76,6 +77,12 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
+                              <TextField fx:id="reassignField">
+                                 <HBox.margin>
+                                    <Insets left="30.0" right="15.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <Button fx:id="reassignButton" mnemonicParsing="false" onAction="#reassign" text="Réassigner" />
                            </children>
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0">

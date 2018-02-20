@@ -122,8 +122,7 @@ public class DeposerController {
 
     public void escapePressed(KeyEvent keyEvent) throws Exception{
         if(keyEvent.getCode() == KeyCode.ESCAPE) {
-            Stage stage = (Stage) exeButton.getScene().getWindow();
-            stage.close();
+            backToList(new ActionEvent());
         }
     }
 
