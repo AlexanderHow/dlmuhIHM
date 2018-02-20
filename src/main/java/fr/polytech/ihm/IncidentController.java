@@ -6,6 +6,8 @@ import fr.polytech.ihm.Model.EnumCategory;
 import fr.polytech.ihm.Model.EnumLocation;
 import fr.polytech.ihm.Model.Task;
 import javafx.animation.TranslateTransition;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -160,6 +163,20 @@ public class IncidentController {
         listViewDone.setItems(doneItems);
         listViewDone.setCellFactory(param -> new Cell());
 
+        this.categoryIncident.valueProperty().addListener(new ChangeListener<String>() {
+            @Override public void changed(ObservableValue ov, String t, String t1) {
+
+                System.out.println(t1);
+            }
+        });
+
+        this.locationIncident.valueProperty().addListener(new ChangeListener<String>() {
+            @Override public void changed(ObservableValue ov, String t, String t1) {
+
+                System.out.println(t1);
+            }
+        });
+
         arrowMove();
 
         }
@@ -280,6 +297,12 @@ public class IncidentController {
 
     @FXML
     void matchSearchAndData(KeyEvent event) {
+        if(event.getCode()== KeyCode.ENTER){
+            this.matching();
+        }
+    }
+
+    private void matching(){
         this.toDoItems=FXCollections.observableArrayList(Data.getInstance().getDataFiltered(1,searchBar.getText(),this.categoryIncident.getSelectionModel().getSelectedItem(),this.locationIncident.getSelectionModel().getSelectedItem()));
         this.inProgressItems=FXCollections.observableArrayList(Data.getInstance().getDataFiltered(1,searchBar.getText(),this.categoryIncident.getSelectionModel().getSelectedItem(),this.locationIncident.getSelectionModel().getSelectedItem()));
         this.doneItems=FXCollections.observableArrayList(Data.getInstance().getDataFiltered(1,searchBar.getText(),this.categoryIncident.getSelectionModel().getSelectedItem(),this.locationIncident.getSelectionModel().getSelectedItem()));
