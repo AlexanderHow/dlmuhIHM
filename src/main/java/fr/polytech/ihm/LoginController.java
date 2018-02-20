@@ -1,6 +1,7 @@
 package fr.polytech.ihm;
 
 import fr.polytech.ihm.Model.LoginCheck;
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -28,8 +29,12 @@ public class LoginController {
     @FXML
     private Text errorText;
 
+    private TranslateTransition anim;
+
     @FXML
     public void initialize() {
+
+        wizz();
 
     }
 
@@ -45,6 +50,7 @@ public class LoginController {
             username.setText("");
             password.setText("");
             errorText.setText("Identifiant ou Mot de passe erronés");
+            anim.play();
         }
     }
 
@@ -68,5 +74,15 @@ public class LoginController {
     public void enterPressed(KeyEvent keyEvent) throws Exception{
         if(keyEvent.getCode() == KeyCode.ENTER)
             this.accountCheck();
+    }
+
+    public void wizz(){
+        TranslateTransition t = new TranslateTransition();
+        t.setNode(errorText);
+        t.setToX(-30);
+        t.setAutoReverse(true);
+        t.setCycleCount(6);
+        t.setRate(4);
+        anim=t;
     }
 }
