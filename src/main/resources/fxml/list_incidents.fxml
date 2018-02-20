@@ -28,7 +28,7 @@
                             <children>
                                 <TextField fx:id="searchBar" onKeyPressed="#matchSearchAndData" prefWidth="200.0" text="Search" />
                                 <ComboBox fx:id="categoryIncident" prefWidth="150.0" promptText="Categorie" />
-                                <ComboBox fx:id="locationIncident" prefWidth="150.0" promptText="Localisation" />
+                                <ComboBox fx:id="locationIncident" prefWidth="150.0" promptText="Localisation"/>
                             </children>
                         </HBox>
                     </left>

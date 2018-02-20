@@ -19,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
@@ -66,6 +67,10 @@ public class IncidentController {
     private ObservableList<Task> inProgressItems = FXCollections.observableArrayList(Data.getInstance().getDataInProgress());
     private ObservableList<Task> doneItems = FXCollections.observableArrayList(Data.getInstance().getDataDone());
     private TranslateTransition anim;
+    private String filterLocation="";
+    private String filterCategory="";
+    private String filterSearch="";
+
 
     static class Cell extends ListCell<Task> {
         HBox hbox = new HBox();
@@ -163,24 +168,21 @@ public class IncidentController {
         listViewDone.setItems(doneItems);
         listViewDone.setCellFactory(param -> new Cell());
 
-        this.categoryIncident.valueProperty().addListener(new ChangeListener<String>() {
-            @Override public void changed(ObservableValue ov, String t, String t1) {
+        this.categoryIncident.setOnAction((event -> {
+            this.filterCategory=this.categoryIncident.getSelectionModel().getSelectedItem();
+            this.matching(this.filterSearch,this.filterCategory,this.filterLocation);
 
-                System.out.println(t1);
-            }
-        });
+        }));
 
-        this.locationIncident.valueProperty().addListener(new ChangeListener<String>() {
-            @Override public void changed(ObservableValue ov, String t, String t1) {
+        this.locationIncident.setOnAction((event -> {
+            this.filterLocation=this.locationIncident.getSelectionModel().getSelectedItem();
+            this.matching(this.filterSearch,this.filterCategory,this.filterLocation);
 
-                System.out.println(t1);
-            }
-        });
+        }));
 
         arrowMove();
 
-        }
-
+    }
 
     @FXML
     public void addIncident(ActionEvent event) throws IOException {
@@ -298,14 +300,27 @@ public class IncidentController {
     @FXML
     void matchSearchAndData(KeyEvent event) {
         if(event.getCode()== KeyCode.ENTER){
-            this.matching();
+            this.filterSearch=searchBar.getText();
+            this.matching(this.filterSearch,this.filterCategory,this.filterLocation);
         }
     }
 
-    private void matching(){
-        this.toDoItems=FXCollections.observableArrayList(Data.getInstance().getDataFiltered(1,searchBar.getText(),this.categoryIncident.getSelectionModel().getSelectedItem(),this.locationIncident.getSelectionModel().getSelectedItem()));
-        this.inProgressItems=FXCollections.observableArrayList(Data.getInstance().getDataFiltered(1,searchBar.getText(),this.categoryIncident.getSelectionModel().getSelectedItem(),this.locationIncident.getSelectionModel().getSelectedItem()));
-        this.doneItems=FXCollections.observableArrayList(Data.getInstance().getDataFiltered(1,searchBar.getText(),this.categoryIncident.getSelectionModel().getSelectedItem(),this.locationIncident.getSelectionModel().getSelectedItem()));
+    private void matching(String search, String category, String location){
+        this.toDoItems=FXCollections.observableArrayList(Data.getInstance().getDataFiltered(1,search,category,location));
+        this.inProgressItems=FXCollections.observableArrayList(Data.getInstance().getDataFiltered(2,search,category,location));
+        this.doneItems=FXCollections.observableArrayList(Data.getInstance().getDataFiltered(3,search,category,location));
+        this.refreshData();
+    }
+
+    public void refreshData(){
+        this.listViewToDo.setItems(toDoItems);
+        this.listViewToDo.setCellFactory(param -> new Cell());
+
+        this.listViewInProgress.setItems(inProgressItems);
+        this.listViewInProgress.setCellFactory(param -> new Cell());
+
+        this.listViewDone.setItems(doneItems);
+        this.listViewDone.setCellFactory(param -> new Cell());
     }
 
 

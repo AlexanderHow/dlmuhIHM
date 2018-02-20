@@ -78,8 +78,8 @@ public class Data {
             if(!t.isDisabled() &&
                     (t.getResolvedLvl()==state) &&
                     (search.equals("") || t.getTitle().contains(search)) &&
-                    (cate==null || t.getCategory().equals(cate)) &&
-                    (loc==null || t.getLocation().equals(cate))
+                    (cate.equals("") || t.getCategory().equals(cate)) &&
+                    (loc.equals("") || t.getLocation().equals(loc))
                     ){
                 r.add(t);
             }
