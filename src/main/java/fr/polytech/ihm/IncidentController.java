@@ -211,6 +211,12 @@ public class IncidentController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }else{
+            arrow.setVisible(true);
+            anim.play();
+            anim.setOnFinished(event1 -> {
+                arrow.setVisible(false);
+            });
         }
     }
 
@@ -259,6 +265,12 @@ public class IncidentController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }else{
+            arrow.setVisible(true);
+            anim.play();
+            anim.setOnFinished(event1 -> {
+                arrow.setVisible(false);
+            });
         }
     }
 
