@@ -52,6 +52,7 @@
                   </TextArea>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                      <children>
+                        <Button fx:id="returnButton" mnemonicParsing="false" onAction="#backToList" text="Annuler" />
                         <Button fx:id="clearButton" mnemonicParsing="false" onMouseClicked="#delete" text="Effacer" />
                         <Button fx:id="exeButton" mnemonicParsing="false" onMouseClicked="#submit" text="Déposer/Sauvegarder">
                            <HBox.margin>
