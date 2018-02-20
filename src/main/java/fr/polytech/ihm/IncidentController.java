@@ -50,13 +50,13 @@ public class IncidentController {
     @FXML
     private Button addIncidentButton;
 
-    private boolean adminMode=false;
+    private boolean adminMode = false;
 
     private ObservableList<Task> toDoItems = FXCollections.observableArrayList(Data.getInstance().getDataToDo());
     private ObservableList<Task> inProgressItems = FXCollections.observableArrayList(Data.getInstance().getDataInProgress());
     private ObservableList<Task> doneItems = FXCollections.observableArrayList(Data.getInstance().getDataDone());
 
-    static class Cell extends ListCell<Task>{
+    static class Cell extends ListCell<Task> {
         HBox hbox = new HBox();
         VBox vBox = new VBox();
         VBox vBox2 = new VBox();
@@ -69,7 +69,7 @@ public class IncidentController {
 
         Button goNext = new Button("→");
 
-        public Cell(){
+        public Cell() {
             super();
             emergencyViewer.setFitHeight(30);
             emergencyViewer.setFitWidth(30);
@@ -88,7 +88,7 @@ public class IncidentController {
                 String fxmlFile = "/fxml/list_incidents.fxml";
                 FXMLLoader loader = new FXMLLoader();
                 try {
-                    Stage stage=(Stage) goNext.getScene().getWindow();
+                    Stage stage = (Stage) goNext.getScene().getWindow();
                     Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
 
                     Scene scene = new Scene(rootNode);
@@ -100,12 +100,12 @@ public class IncidentController {
             });
         }
 
-        public void updateItem(Task task, boolean empty){
+        public void updateItem(Task task, boolean empty) {
             super.updateItem(task, empty);
             setText(null);
             setGraphic(null);
 
-            if(task != null && !empty){
+            if (task != null && !empty) {
                 title.setText(task.getTitle());
                 date.setText(task.getDate());
                 author.setText(task.getAuthor());
@@ -136,10 +136,10 @@ public class IncidentController {
 
     @FXML
     public void initialize() {
-        for (EnumCategory cat: EnumCategory.values()) {
+        for (EnumCategory cat : EnumCategory.values()) {
             categoryIncident.getItems().add(cat.toString());
         }
-        for (EnumLocation loc: EnumLocation.values()) {
+        for (EnumLocation loc : EnumLocation.values()) {
             locationIncident.getItems().add(loc.toString());
         }
 
@@ -188,63 +188,69 @@ public class IncidentController {
 
     @FXML
     void displayTask(MouseEvent event) {
-        String fxmlFile = "/fxml/visuadmin.fxml";
-        FXMLLoader loader = new FXMLLoader();
-        try {
-            Stage stage = (Stage) listViewToDo.getScene().getWindow();
-            Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
-            Scene scene = new Scene(rootNode);
-            VisualiserController controller = loader.<VisualiserController>getController();
-            controller.setAdminMode(this.adminMode);
-            controller.setTask(listViewToDo.getSelectionModel().getSelectedItem());
-            stage.setTitle("Liste des incidents");
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (!listViewToDo.getItems().isEmpty() && listViewToDo.getSelectionModel().getSelectedItem() != null) {
+            String fxmlFile = "/fxml/visuadmin.fxml";
+            FXMLLoader loader = new FXMLLoader();
+            try {
+                Stage stage = (Stage) listViewToDo.getScene().getWindow();
+                Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
+                Scene scene = new Scene(rootNode);
+                VisualiserController controller = loader.<VisualiserController>getController();
+                controller.setAdminMode(this.adminMode);
+                controller.setTask(listViewToDo.getSelectionModel().getSelectedItem());
+                stage.setTitle("Liste des incidents");
+                stage.setScene(scene);
+                stage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
     @FXML
     void displayTaskDone(MouseEvent event) {
-        String fxmlFile = "/fxml/visuadmin.fxml";
-        FXMLLoader loader = new FXMLLoader();
-        try {
-            Stage stage = (Stage) listViewDone.getScene().getWindow();
-            Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
-            Scene scene = new Scene(rootNode);
-            VisualiserController controller = loader.<VisualiserController>getController();
-            controller.setAdminMode(this.adminMode);
-            controller.setTask(listViewDone.getSelectionModel().getSelectedItem());
-            stage.setTitle("Liste des incidents");
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (!listViewDone.getItems().isEmpty() && listViewDone.getSelectionModel().getSelectedItem() != null) {
+            String fxmlFile = "/fxml/visuadmin.fxml";
+            FXMLLoader loader = new FXMLLoader();
+            try {
+                Stage stage = (Stage) listViewDone.getScene().getWindow();
+                Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
+                Scene scene = new Scene(rootNode);
+                VisualiserController controller = loader.<VisualiserController>getController();
+                controller.setAdminMode(this.adminMode);
+                controller.setTask(listViewDone.getSelectionModel().getSelectedItem());
+                stage.setTitle("Liste des incidents");
+                stage.setScene(scene);
+                stage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
     @FXML
     void displayTaskInProgress(MouseEvent event) {
-        String fxmlFile = "/fxml/visuadmin.fxml";
-        FXMLLoader loader = new FXMLLoader();
-        try {
-            Stage stage = (Stage) listViewInProgress.getScene().getWindow();
-            Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
-            Scene scene = new Scene(rootNode);
-            VisualiserController controller = loader.<VisualiserController>getController();
-            controller.setAdminMode(this.adminMode);
-            controller.setTask(listViewInProgress.getSelectionModel().getSelectedItem());
-            stage.setTitle("Liste des incidents");
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (!listViewInProgress.getItems().isEmpty() && listViewInProgress.getSelectionModel().getSelectedItem() != null) {
+            String fxmlFile = "/fxml/visuadmin.fxml";
+            FXMLLoader loader = new FXMLLoader();
+            try {
+                Stage stage = (Stage) listViewInProgress.getScene().getWindow();
+                Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
+                Scene scene = new Scene(rootNode);
+                VisualiserController controller = loader.<VisualiserController>getController();
+                controller.setAdminMode(this.adminMode);
+                controller.setTask(listViewInProgress.getSelectionModel().getSelectedItem());
+                stage.setTitle("Liste des incidents");
+                stage.setScene(scene);
+                stage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
 
-    public void setAdminMode(boolean b){
-        this.adminMode=b;
+    public void setAdminMode(boolean b) {
+        this.adminMode = b;
     }
 }
