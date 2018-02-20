@@ -5,6 +5,7 @@ import fr.polytech.ihm.Model.Data;
 import fr.polytech.ihm.Model.EnumCategory;
 import fr.polytech.ihm.Model.EnumLocation;
 import fr.polytech.ihm.Model.Task;
+import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,12 +24,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class IncidentController {
 
+    public ImageView arrow;
     @FXML
     private ComboBox<String> categoryIncident;
 
@@ -55,6 +58,7 @@ public class IncidentController {
     private ObservableList<Task> toDoItems = FXCollections.observableArrayList(Data.getInstance().getDataToDo());
     private ObservableList<Task> inProgressItems = FXCollections.observableArrayList(Data.getInstance().getDataInProgress());
     private ObservableList<Task> doneItems = FXCollections.observableArrayList(Data.getInstance().getDataDone());
+    private TranslateTransition anim;
 
     static class Cell extends ListCell<Task> {
         HBox hbox = new HBox();
@@ -135,7 +139,7 @@ public class IncidentController {
     }
 
     @FXML
-    public void initialize() {
+    public void initialize() throws IOException {
         for (EnumCategory cat : EnumCategory.values()) {
             categoryIncident.getItems().add(cat.toString());
         }
@@ -151,7 +155,10 @@ public class IncidentController {
 
         listViewDone.setItems(doneItems);
         listViewDone.setCellFactory(param -> new Cell());
-    }
+
+        arrowMove();
+
+        }
 
 
     @FXML
@@ -204,11 +211,17 @@ public class IncidentController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }else{
+            arrow.setVisible(true);
+            anim.play();
+            anim.setOnFinished(event1 -> {
+                arrow.setVisible(false);
+            });
         }
     }
 
     @FXML
-    void displayTaskDone(MouseEvent event) {
+    void displayTaskDone(MouseEvent event) throws IOException, InterruptedException {
         if (!listViewDone.getItems().isEmpty() && listViewDone.getSelectionModel().getSelectedItem() != null) {
             String fxmlFile = "/fxml/visuadmin.fxml";
             FXMLLoader loader = new FXMLLoader();
@@ -225,6 +238,12 @@ public class IncidentController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }else {
+            arrow.setVisible(true);
+            anim.play();
+            anim.setOnFinished(event1 -> {
+                arrow.setVisible(false);
+            });
         }
     }
 
@@ -246,11 +265,29 @@ public class IncidentController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }else{
+            arrow.setVisible(true);
+            anim.play();
+            anim.setOnFinished(event1 -> {
+                arrow.setVisible(false);
+            });
         }
     }
 
 
     public void setAdminMode(boolean b) {
         this.adminMode = b;
+    }
+
+    public void arrowMove(){
+
+        TranslateTransition t = new TranslateTransition();
+        t.setNode(arrow);
+        t.setToX(-30);
+        t.setAutoReverse(true);
+        t.setCycleCount(6);
+        t.setRate(4);
+        anim=t;
+
     }
 }
