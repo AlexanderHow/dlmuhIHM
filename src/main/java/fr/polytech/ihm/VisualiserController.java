@@ -63,6 +63,9 @@ public class VisualiserController {
     @FXML
     private Button resolvedVisuAdmin;
 
+    @FXML
+    private Button retroButton;
+
     private Task task;
     private boolean alreadyUpvoted=false;
     private boolean adminMode=false;
@@ -73,12 +76,14 @@ public class VisualiserController {
             this.resolvedVisuAdmin.setDisable(true);
             this.resolvedVisuAdmin.setVisible(false);
         }
-
         this.refresh();
     }
 
     private void refresh(){
         if(this.task!=null){
+            if(task.resolvedProperty().get()==1) {
+                retroButton.setVisible(false);
+            }
             this.titleVisuAdmin.setText(this.task.titleProperty().get());
             this.authorVisuAdmin.setText("Auteur: "+this.task.authorProperty().get());
             this.assigneeVisuAdmin.setText("Assigné: "+this.task.assigneeProperty().get());
