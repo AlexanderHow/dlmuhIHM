@@ -2,173 +2,89 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.polytech.ihm.VisualiserController">
-   <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.polytech.ihm.VisualiserController">
+   <children>
+      <VBox layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Text id="titleVisuAdmin" fx:id="titleVisuAdmin" strokeType="OUTSIDE" strokeWidth="0.0" text="Task Title :">
+            <AnchorPane prefHeight="135.0" prefWidth="900.0">
+               <children>
+                  <Button fx:id="returnVisuAdmin" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#onClickReturn" text="←" />
+                  <Label fx:id="titleVisuAdmin" layoutX="344.0" layoutY="16.0" text="Titre de la tâche">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="imgEmergencyVisuAdmin" fitHeight="100.0" fitWidth="100.0" layoutX="786.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" />
+               </children>
                <VBox.margin>
-                  <Insets bottom="25.0" left="150.0" right="150.0" top="50.0" />
+                  <Insets />
                </VBox.margin>
-               <font>
-                  <Font name="Calibri Bold" size="24.0" />
-               </font>
-            </Text>
-            <Text id="authorVisuAdmin" fx:id="authorVisuAdmin" strokeType="OUTSIDE" strokeWidth="0.0" text="Autheur : ">
-               <VBox.margin>
-                  <Insets bottom="10.0" left="150.0" right="150.0" />
-               </VBox.margin>
-               <font>
-                  <Font name="Calibri" size="18.0" />
-               </font>
-            </Text>
-            <Text id="assigneeVisuAdmin" fx:id="assigneeVisuAdmin" strokeType="OUTSIDE" strokeWidth="0.0" text="Assignee : ">
-               <VBox.margin>
-                  <Insets bottom="10.0" left="150.0" right="150.0" />
-               </VBox.margin>
-               <font>
-                  <Font name="Calibri" size="18.0" />
-               </font>
-            </Text>
-            <Text id="categoryVisuAdmin" fx:id="categoryVisuAdmin" strokeType="OUTSIDE" strokeWidth="0.0" text="Category : ">
-               <VBox.margin>
-                  <Insets bottom="10.0" left="150.0" right="150.0" />
-               </VBox.margin>
-               <font>
-                  <Font name="Calibri" size="18.0" />
-               </font>
-            </Text>
-            <Text id="dateVisuAdmin" fx:id="dateVisuAdmin" strokeType="OUTSIDE" strokeWidth="0.0" text="Date : ">
-               <VBox.margin>
-                  <Insets bottom="10.0" left="150.0" right="150.0" />
-               </VBox.margin>
-            </Text>
-            <Text id="locationVisuAdmin" fx:id="locationVisuAdmin" strokeType="OUTSIDE" strokeWidth="0.0" text="Location : ">
-               <font>
-                  <Font name="Calibri" size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="30.0" left="150.0" right="150.0" />
-               </VBox.margin>
-            </Text>
-            <Text id="titleDescriVisuAdmin" strokeType="OUTSIDE" strokeWidth="0.0" text="Description : ">
-               <VBox.margin>
-                  <Insets bottom="10.0" left="150.0" right="150.0" />
-               </VBox.margin>
-               <font>
-                  <Font name="Calibri" size="18.0" />
-               </font>
-            </Text>
-            <TextArea fx:id="descriptionVisuAdmin" prefHeight="200.0" prefWidth="200.0">
+            </AnchorPane>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label fx:id="authorVisuAdmin" text="Auteur:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="assigneeVisuAdmin" text="Assigné:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="categoryVisuAdmin" text="Catégorie:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label fx:id="dateVisuAdmin" text="Date:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="locationVisuAdmin" text="Lieu:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Label text="Informations complémentaires:">
                <font>
                   <Font size="18.0" />
                </font>
-               <VBox.margin>
-                  <Insets bottom="30.0" left="100.0" right="100.0" />
-               </VBox.margin>
-            </TextArea>
-            <GridPane prefHeight="2.0" prefWidth="636.0">
-              <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <VBox.margin>
-                  <Insets left="150.0" right="150.0" />
-               </VBox.margin>
-               <children>
-                  <Button id="upvoteVisuAdmin" fx:id="upvoteVisuAdmin" mnemonicParsing="false" onMouseClicked="#onClickUpvote" text="Upvote" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
-                     <font>
-                        <Font name="Calibri" size="18.0" />
-                     </font>
-                  </Button>
-                  <Text id="displayUpvoteVisuAdmin" fx:id="displayUpvoteVisuAdmin" strokeType="OUTSIDE" strokeWidth="0.0" text="+0" GridPane.halignment="RIGHT">
-                     <GridPane.margin>
-                        <Insets right="10.0" />
-                     </GridPane.margin>
-                     <font>
-                        <Font name="Calibri" size="18.0" />
-                     </font>
-                  </Text>
-                  <Button mnemonicParsing="false" onAction="#saveDescription" text="Save description">
-                     <font>
-                        <Font name="Calibri" size="18.0" />
-                     </font>
-                  </Button>
-                  <Text fx:id="savedDisplay" fill="#0fcf3c" strokeType="OUTSIDE" strokeWidth="0.0" text="Saved" visible="false">
-                     <GridPane.margin>
-                        <Insets left="150.0" />
-                     </GridPane.margin>
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Text>
-               </children>
-            </GridPane>
-         </children>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-      </VBox>
-   </center>
-   <top>
-      <GridPane BorderPane.alignment="CENTER">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <ImageView id="imgEmergencyVisuAdmin" fx:id="imgEmergencyVisuAdmin" fitHeight="56.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets right="20.0" top="20.0" />
-               </GridPane.margin>
-               <image>
-                  <Image url="@/images/pastillergence.png" />
-               </image>
-            </ImageView>
-            <Button id="returnVisuAdmin" fx:id="returnVisuAdmin" mnemonicParsing="false" onMouseClicked="#onClickReturn" prefHeight="60.0" prefWidth="60.0" text="←">
-               <GridPane.margin>
-                  <Insets left="10.0" top="10.0" />
-               </GridPane.margin>
-            </Button>
-         </children>
-      </GridPane>
-   </top>
-   <bottom>
-      <GridPane BorderPane.alignment="CENTER">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <BorderPane.margin>
-            <Insets bottom="50.0" />
-         </BorderPane.margin>
-         <children>
-            <Button id="resolvedVisuAdmin" fx:id="resolvedVisuAdmin" mnemonicParsing="false" onMouseClicked="#onClickDelete" text="Delete" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            </Label>
+            <TextArea fx:id="descriptionVisuAdmin" prefHeight="187.0" prefWidth="293.0">
                <font>
-                  <Font name="Calibri" size="24.0" />
-               </font>
-            </Button>
+                  <Font size="18.0" />
+               </font></TextArea>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Label fx:id="displayUpvoteVisuAdmin" text="Label" />
+                  <Button fx:id="upvoteVisuAdmin" mnemonicParsing="false" onMouseClicked="#onClickUpvote" text="Upvote" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="savedDisplay" mnemonicParsing="false" onMouseClicked="#saveDescription" text="Sauvegarder les informations complémentaires" />
+                  <Button fx:id="resolvedVisuAdmin" mnemonicParsing="false" onMouseClicked="#onClickDelete" text="Supprimer l'incident" />
+               </children>
+            </HBox>
          </children>
-      </GridPane>
-   </bottom>
-</BorderPane>
+      </VBox>
+   </children>
+</AnchorPane>
