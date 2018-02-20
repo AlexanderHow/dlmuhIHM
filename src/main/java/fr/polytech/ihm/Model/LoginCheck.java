@@ -11,14 +11,10 @@ public class LoginCheck {
     }
 
     public boolean isValid() {
-        if(username.equals("user") && password.equals("user") || this.isAdmin())
-            return true;
-        return false;
+        return (username.equals("user") && password.equals("user") || this.isAdmin());
     }
 
     public boolean isAdmin() {
-        if(username.equals("admin") && password.equals("admin"))
-            return true;
-        return false;
+        return (username.equals("admin") && password.equals("admin"));
     }
 }
