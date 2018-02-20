@@ -7,6 +7,7 @@ import javafx.animation.Interpolator;
 import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -53,6 +54,9 @@ public class DeposerController {
 
     @FXML
     private Button clearButton;
+
+    @FXML
+    private Button returnButton;
 
     @FXML
     private Button exeButton;
@@ -131,5 +135,20 @@ public class DeposerController {
         t.setCycleCount(6);
         t.setRate(4);
         anim=t;
+    }
+
+    public void backToList(ActionEvent actionEvent) {
+        String fxmlFile = "/fxml/list_incidents.fxml";
+        FXMLLoader loader = new FXMLLoader();
+        try {
+            Stage stage = (Stage) returnButton.getScene().getWindow();
+            Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
+
+            Scene scene = new Scene(rootNode);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
