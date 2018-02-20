@@ -96,7 +96,7 @@ public class VisualiserController {
             }
             this.titleVisuAdmin.setText(" " + this.task.titleProperty().get());
             this.authorVisuAdmin.setText(" "+this.task.authorProperty().get());
-            this.assigneeVisuAdmin.setText(" "+this.task.assigneeProperty().get());
+            this.assigneeVisuAdmin.setText(this.task.assigneeProperty().get()!=null ? " "+this.task.assigneeProperty().get() : " Personne");
             this.categoryVisuAdmin.setText(" "+this.task.categoryProperty().get());
             this.dateVisuAdmin.setText(" "+this.task.dateProperty().get());
             this.locationVisuAdmin.setText(" "+this.task.locationProperty().get());
