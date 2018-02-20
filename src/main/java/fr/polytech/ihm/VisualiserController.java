@@ -79,12 +79,12 @@ public class VisualiserController {
 
     private void refresh(){
         if(this.task!=null){
-            this.titleVisuAdmin.setText(this.task.titleProperty().get());
-            this.authorVisuAdmin.setText("Auteur: "+this.task.authorProperty().get());
-            this.assigneeVisuAdmin.setText("Assigné: "+this.task.assigneeProperty().get());
-            this.categoryVisuAdmin.setText("Catégorie: "+this.task.categoryProperty().get());
-            this.dateVisuAdmin.setText("Date: "+this.task.dateProperty().get());
-            this.locationVisuAdmin.setText("Lieu: "+this.task.locationProperty().get());
+            this.titleVisuAdmin.setText(" " + this.task.titleProperty().get());
+            this.authorVisuAdmin.setText(" "+this.task.authorProperty().get());
+            this.assigneeVisuAdmin.setText(" "+this.task.assigneeProperty().get());
+            this.categoryVisuAdmin.setText(" "+this.task.categoryProperty().get());
+            this.dateVisuAdmin.setText(" "+this.task.dateProperty().get());
+            this.locationVisuAdmin.setText(" "+this.task.locationProperty().get());
             this.descriptionVisuAdmin.setText(this.task.descriptionProperty().get());
             //this.displayUpvoteVisuAdmin.setText("+"+this.task.upvoteProperty().toString());
             this.displayUpvoteVisuAdmin.textProperty().bindBidirectional(this.task.upvoteProperty(),new NumberStringConverter());
