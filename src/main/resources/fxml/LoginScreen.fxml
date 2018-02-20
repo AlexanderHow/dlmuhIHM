@@ -20,7 +20,7 @@
       </ImageView>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reports d'incidents de Polytech Nice">
          <font>
-            <Font name="Comic Sans MS" size="30.0" />
+            <Font name="Curlz MT" size="30.0" />
          </font>
       </Text>
       <BorderPane>
