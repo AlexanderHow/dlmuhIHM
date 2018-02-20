@@ -58,7 +58,7 @@ public class VisualiserController {
     private Button upvoteVisuAdmin;
 
     @FXML
-    private Button savedDisplay;
+    private Text saveText;
 
     @FXML
     private Button resolvedVisuAdmin;
@@ -162,15 +162,28 @@ public class VisualiserController {
     @FXML
     public void saveDescription(MouseEvent mouseEvent) {
         task.setNewDescription(new SimpleStringProperty(descriptionVisuAdmin.getText()));
-        savedDisplay.setVisible(true);
+        saveText.setVisible(true);
     }
 
 
     public void retrograde(ActionEvent actionEvent) {
         task.decrementResolved();
+        String fxmlFile = "/fxml/list_incidents.fxml";
+        FXMLLoader loader = new FXMLLoader();
+        try {
+            Stage stage=(Stage) returnVisuAdmin.getScene().getWindow();
+            Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
+            IncidentController controller = loader.<IncidentController>getController();
+            controller.setAdminMode(adminMode);
+            Scene scene = new Scene(rootNode);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void supprSaveDisplay(InputMethodEvent inputMethodEvent) {
-        savedDisplay.setVisible(false);
+    public void supprSaveDisplay(MouseEvent mouseEvent) {
+        saveText.setVisible(false);
     }
 }

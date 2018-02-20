@@ -76,7 +76,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextArea fx:id="descriptionVisuAdmin" onInputMethodTextChanged="#supprSaveDisplay" prefHeight="187.0" prefWidth="293.0">
+            <TextArea fx:id="descriptionVisuAdmin" onMouseClicked="#supprSaveDisplay" prefHeight="187.0" prefWidth="293.0">
                <font>
                   <Font size="22.0" />
                </font></TextArea>
@@ -86,12 +86,12 @@
                   <Button fx:id="upvoteVisuAdmin" mnemonicParsing="false" onMouseClicked="#onClickUpvote" text="Upvote" HBox.hgrow="ALWAYS" />
                   <Button mnemonicParsing="false" onAction="#retrograde" text="Rétrograder" />
                   <Button fx:id="saveButton" mnemonicParsing="false" onMouseClicked="#saveDescription" text="Sauvegarder les informations complémentaires" />
-                  <Text fx:id="saveText" fill="#22d019" strokeType="OUTSIDE" strokeWidth="0.0" text="Saved" />
+                  <Text fx:id="saveText" fill="#22d019" strokeType="OUTSIDE" strokeWidth="0.0" text="Saved" visible="false" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="43.0" prefWidth="880.0" spacing="10.0">
                <children>
-                  <Button fx:id="resolvedVisuAdmin1" mnemonicParsing="false" onMouseClicked="#onClickDelete" text="Supprimer l'incident" />
+                  <Button fx:id="resolvedVisuAdmin" mnemonicParsing="false" onMouseClicked="#onClickDelete" text="Supprimer l'incident" />
                </children>
             </HBox>
          </children>
