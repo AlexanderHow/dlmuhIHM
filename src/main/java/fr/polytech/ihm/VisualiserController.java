@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.InputMethodEvent;
@@ -66,6 +67,11 @@ public class VisualiserController {
     @FXML
     private Button retroButton;
 
+    @FXML
+    private TextField reassignField;
+
+    @FXML Button reassignButton;
+
     private Task task;
     private boolean alreadyUpvoted=false;
     private boolean adminMode=false;
@@ -75,6 +81,10 @@ public class VisualiserController {
         if(!adminMode){
             this.resolvedVisuAdmin.setDisable(true);
             this.resolvedVisuAdmin.setVisible(false);
+            this.reassignButton.setDisable(true);
+            this.reassignButton.setVisible(false);
+            this.reassignField.setDisable(true);
+            this.reassignField.setVisible(false);
         }
         this.refresh();
     }
@@ -123,6 +133,10 @@ public class VisualiserController {
         if(adminMode){
             this.resolvedVisuAdmin.setDisable(false);
             this.resolvedVisuAdmin.setVisible(true);
+            this.reassignField.setDisable(false);
+            this.reassignField.setVisible(true);
+            this.reassignButton.setDisable(false);
+            this.reassignButton.setVisible(true);
         }
     }
 
@@ -179,7 +193,7 @@ public class VisualiserController {
 
     @FXML
     public void saveDescription(MouseEvent mouseEvent) {
-        task.setNewDescription(new SimpleStringProperty(descriptionVisuAdmin.getText()));
+        task.setNewDescription(descriptionVisuAdmin.getText());
         saveText.setVisible(true);
     }
 
@@ -203,5 +217,13 @@ public class VisualiserController {
 
     public void supprSaveDisplay(MouseEvent mouseEvent) {
         saveText.setVisible(false);
+    }
+
+    public void reassign(ActionEvent actionEvent) {
+        String who = reassignField.getText().toString();
+        task.reassign(who);
+        assigneeVisuAdmin.setText(" "+who);
+        reassignField.setText("");
+
     }
 }
