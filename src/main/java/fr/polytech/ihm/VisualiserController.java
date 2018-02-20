@@ -162,6 +162,19 @@ public class VisualiserController {
         if(adminMode){
             this.task.deleteTask();
         }
+        String fxmlFile = "/fxml/list_incidents.fxml";
+        FXMLLoader loader = new FXMLLoader();
+        try {
+            Stage stage=(Stage) returnVisuAdmin.getScene().getWindow();
+            Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
+            IncidentController controller = loader.<IncidentController>getController();
+            controller.setAdminMode(adminMode);
+            Scene scene = new Scene(rootNode);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
