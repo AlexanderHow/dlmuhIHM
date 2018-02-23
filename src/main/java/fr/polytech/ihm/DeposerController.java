@@ -72,7 +72,7 @@ public class DeposerController {
             cBoxLocalisationId.getItems().add(l.toString());
         }
         for (EnumCategory c : EnumCategory.values()) {
-            cBoxCategoryId.getItems().add(c.toString());
+            cBoxCategoryId.getItems().add(c.getLibelle());
         }
         wizz();
     }
@@ -109,7 +109,7 @@ public class DeposerController {
             String hour = hourTextId.getText();
             String date = dateId.getValue().toString();
             String location = cBoxLocalisationId.getValue();
-            String category = cBoxCategoryId.getValue();
+            String category = cBoxCategoryId.getSelectionModel().getSelectedItem();
             String description = descriptionId.getText();
             Data.addTask(title,who,null,category,date,location,description,0,emergency);
             try {

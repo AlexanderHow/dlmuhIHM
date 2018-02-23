@@ -232,11 +232,13 @@ public class IncidentController {
                 e.printStackTrace();
             }
         }else{
-            arrow.setVisible(true);
-            anim.play();
-            anim.setOnFinished(event1 -> {
-                arrow.setVisible(false);
-            });
+            if (listViewToDo.getItems().isEmpty()) {
+                arrow.setVisible(true);
+                anim.play();
+                anim.setOnFinished(event1 -> {
+                    arrow.setVisible(false);
+                });
+            }
         }
     }
 
@@ -259,11 +261,13 @@ public class IncidentController {
                 e.printStackTrace();
             }
         }else {
-            arrow.setVisible(true);
-            anim.play();
-            anim.setOnFinished(event1 -> {
-                arrow.setVisible(false);
-            });
+            if (listViewDone.getItems().isEmpty()) {
+                arrow.setVisible(true);
+                anim.play();
+                anim.setOnFinished(event1 -> {
+                    arrow.setVisible(false);
+                });
+            }
         }
     }
 
@@ -286,11 +290,13 @@ public class IncidentController {
                 e.printStackTrace();
             }
         }else{
-            arrow.setVisible(true);
-            anim.play();
-            anim.setOnFinished(event1 -> {
-                arrow.setVisible(false);
-            });
+            if(listViewInProgress.getItems().isEmpty()) {
+                arrow.setVisible(true);
+                anim.play();
+                anim.setOnFinished(event1 -> {
+                    arrow.setVisible(false);
+                });
+            }
         }
     }
 
