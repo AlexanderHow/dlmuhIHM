@@ -18,9 +18,9 @@
          <center>
             <VBox alignment="CENTER" prefHeight="516.0" prefWidth="335.0" spacing="30.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label alignment="CENTER" prefHeight="0.0" prefWidth="236.0" text="Ajout/Modification de ticket">
+                  <Label alignment="CENTER" prefHeight="23.0" prefWidth="369.0" text="Ajout/Modification de ticket">
                      <font>
-                        <Font name="Arial Bold" size="18.0" />
+                        <Font name="Castellar" size="17.0" />
                      </font>
                      <VBox.margin>
                         <Insets top="15.0" />

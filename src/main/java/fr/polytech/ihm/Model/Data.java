@@ -15,11 +15,12 @@ public class Data {
     private Data() {
         //test tasks
         this.tasks=new ArrayList<Task>();
-        tasks.add(new Task(1,"Test1","Quentin","Alexandre",EnumCategory.MAINTENANCE.getLibelle(),new Date().toString(),EnumLocation.E130.toString(),"Ceci est un test 1",0,1));
-        tasks.add(new Task(2,"Test2","Camille","Francis",EnumCategory.UTILITAIRE.getLibelle(),new Date().toString(),EnumLocation.O201.toString(),"Ceci n'est pas un test 1",3,3));
-        tasks.add(new Task(3,"Ampoule claquée","Camil","Barnabé",EnumCategory.RESSOURCE.getLibelle(),new Date().toString(),EnumLocation.AMPHIFORUM.toString(),"Ca va être tout noir",3,2));
-
-        this.lastId=2;
+        tasks.add(new Task(1,"Chaise Cassée","Quentin","Alexandre",EnumCategory.RESSOURCE.getLibelle(),new Date().toString(),EnumLocation.E130.toString(),"Dossier détaché",1,1));
+        tasks.add(new Task(2,"Inondation","Camille","Francis",EnumCategory.MAINTENANCE.getLibelle(),new Date().toString(),EnumLocation.O203.toString(),"Fuite d'eau depuis le plafond",26,3,2));
+        tasks.add(new Task(3,"Ampoule claquée","Camille","Barnabé",EnumCategory.RESSOURCE.getLibelle(),new Date().toString(),EnumLocation.AMPHIFORUM.toString(),"Ca va être tout noir",14,2,2));
+        tasks.add(new Task(4,"Nombre de prise de courants","Camille","Bernard",EnumCategory.SERVICE.getLibelle(),new Date().toString(),EnumLocation.E131.toString(),"Pas assez de prises pour subvenir aux besoin de tout un amphi",1869,2));
+        tasks.add(new Task(5,"Rétroprojecteur déféctueux","Claude Galan","Bernard",EnumCategory.MAINTENANCE.getLibelle(),new Date().toString(),EnumLocation.E142.toString(),"Bruit penible toutes les 30 secondes",14,1));
+        this.lastId=5;
     }
 
     public static void addTask(String title,String author,String assignee,String category,String date,String location,String description,int upvote, int emergency){

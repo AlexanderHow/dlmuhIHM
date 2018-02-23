@@ -29,6 +29,21 @@ public class Task {
         this.emergencyLvl=new SimpleIntegerProperty(emergency);
     }
 
+    public Task(int id, String title,String author,String assignee,String category,String date,String location,String description,int upvote, int emergency, int resolvedLvl){
+        this.id=id;
+        this.title=new SimpleStringProperty(title);
+        this.author=new SimpleStringProperty(author);
+        this.assignee=new SimpleStringProperty(assignee);
+        this.category=new SimpleStringProperty(category);
+        this.date=new SimpleStringProperty(date);
+        this.location=new SimpleStringProperty(location);
+        this.description=new SimpleStringProperty(description);
+        this.upvote=new SimpleIntegerProperty(upvote);
+        this.emergencyLvl=new SimpleIntegerProperty(emergency);
+        if (resolvedLvl<4 &&resolvedLvl>=0)
+            this.resolvedLvl=new SimpleIntegerProperty(resolvedLvl);
+    }
+
     public String getTitle() {
         return title.get();
     }

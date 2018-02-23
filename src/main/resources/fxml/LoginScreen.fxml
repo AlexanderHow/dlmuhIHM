@@ -18,9 +18,9 @@
             <Image url="@/images/logo.png" />
          </image>
       </ImageView>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reports d'incidents de Polytech Nice">
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Déclaration d'incidents de Polytech Nice">
          <font>
-            <Font name="Curlz MT" size="30.0" />
+            <Font name="Castellar" size="30.0" />
          </font>
       </Text>
       <BorderPane>
@@ -48,7 +48,7 @@
                      </children>
                   </VBox>
                   <Text fx:id="errorText" fill="#f01010" strokeType="OUTSIDE" strokeWidth="0.0" text=" " />
-                  <Button fx:id="login" mnemonicParsing="false" onMouseClicked="#onClick" pickOnBounds="false" text="LINKU STARTO !">
+                  <Button fx:id="login" mnemonicParsing="false" onMouseClicked="#onClick" pickOnBounds="false" text="CONNEXION">
                      <font>
                         <Font size="15.0" />
                      </font>
