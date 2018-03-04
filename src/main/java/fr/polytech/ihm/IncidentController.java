@@ -67,9 +67,9 @@ public class IncidentController {
     private ObservableList<Task> inProgressItems = FXCollections.observableArrayList(Data.getInstance().getDataInProgress());
     private ObservableList<Task> doneItems = FXCollections.observableArrayList(Data.getInstance().getDataDone());
     private TranslateTransition anim;
-    private String filterLocation="";
-    private String filterCategory="";
-    private String filterSearch="";
+    private String filterLocation = "";
+    private String filterCategory = "";
+    private String filterSearch = "";
 
 
     static class Cell extends ListCell<Task> {
@@ -105,7 +105,7 @@ public class IncidentController {
                 FXMLLoader loader = new FXMLLoader();
 
                 ic.matching(ic.getSearchBar().getText(),
-                       ic.getCategoryIncident().getSelectionModel().getSelectedItem(),
+                        ic.getCategoryIncident().getSelectionModel().getSelectedItem(),
                         ic.getLocationIncident().getSelectionModel().getSelectedItem());
 
             });
@@ -165,14 +165,14 @@ public class IncidentController {
         listViewDone.setCellFactory(param -> new Cell(this));
 
         this.categoryIncident.setOnAction((event -> {
-            this.filterCategory=this.categoryIncident.getSelectionModel().getSelectedItem();
-            this.matching(this.filterSearch,this.filterCategory,this.filterLocation);
+            this.filterCategory = this.categoryIncident.getSelectionModel().getSelectedItem();
+            this.matching(this.filterSearch, this.filterCategory, this.filterLocation);
 
         }));
 
         this.locationIncident.setOnAction((event -> {
-            this.filterLocation=this.locationIncident.getSelectionModel().getSelectedItem();
-            this.matching(this.filterSearch,this.filterCategory,this.filterLocation);
+            this.filterLocation = this.locationIncident.getSelectionModel().getSelectedItem();
+            this.matching(this.filterSearch, this.filterCategory, this.filterLocation);
 
         }));
 
@@ -231,7 +231,7 @@ public class IncidentController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }else{
+        } else {
             if (listViewToDo.getItems().isEmpty()) {
                 arrow.setVisible(true);
                 anim.play();
@@ -260,7 +260,7 @@ public class IncidentController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }else {
+        } else {
             if (listViewDone.getItems().isEmpty()) {
                 arrow.setVisible(true);
                 anim.play();
@@ -289,8 +289,8 @@ public class IncidentController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }else{
-            if(listViewInProgress.getItems().isEmpty()) {
+        } else {
+            if (listViewInProgress.getItems().isEmpty()) {
                 arrow.setVisible(true);
                 anim.play();
                 anim.setOnFinished(event1 -> {
@@ -302,20 +302,20 @@ public class IncidentController {
 
     @FXML
     void matchSearchAndData(KeyEvent event) {
-        if(event.getCode()== KeyCode.ENTER){
-            this.filterSearch=searchBar.getText();
-            this.matching(this.filterSearch,this.filterCategory,this.filterLocation);
+        if (event.getCode() == KeyCode.ENTER) {
+            this.filterSearch = searchBar.getText();
+            this.matching(this.filterSearch, this.filterCategory, this.filterLocation);
         }
     }
 
-    private void matching(String search, String category, String location){
-        this.toDoItems=FXCollections.observableArrayList(Data.getInstance().getDataFiltered(1,search,category,location));
-        this.inProgressItems=FXCollections.observableArrayList(Data.getInstance().getDataFiltered(2,search,category,location));
-        this.doneItems=FXCollections.observableArrayList(Data.getInstance().getDataFiltered(3,search,category,location));
+    private void matching(String search, String category, String location) {
+        this.toDoItems = FXCollections.observableArrayList(Data.getInstance().getDataFiltered(1, search, category, location));
+        this.inProgressItems = FXCollections.observableArrayList(Data.getInstance().getDataFiltered(2, search, category, location));
+        this.doneItems = FXCollections.observableArrayList(Data.getInstance().getDataFiltered(3, search, category, location));
         this.refreshData();
     }
 
-    public void refreshData(){
+    public void refreshData() {
         this.listViewToDo.setItems(toDoItems);
         this.listViewToDo.setCellFactory(param -> new Cell(this));
 
@@ -342,7 +342,7 @@ public class IncidentController {
         this.adminMode = b;
     }
 
-    public void arrowMove(){
+    public void arrowMove() {
 
         TranslateTransition t = new TranslateTransition();
         t.setNode(arrow);
@@ -350,7 +350,7 @@ public class IncidentController {
         t.setAutoReverse(true);
         t.setCycleCount(6);
         t.setRate(4);
-        anim=t;
+        anim = t;
 
     }
 }

@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#escapePressed" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.polytech.ihm.VisualiserController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#escapePressed" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.polytech.ihm.VisualiserController">
    <children>
       <VBox layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -21,16 +21,16 @@
                <children>
                   <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button fx:id="returnVisuAdmin" mnemonicParsing="false" onAction="#onClickReturn" text="←">
+                        <Button fx:id="returnVisuAdmin" mnemonicParsing="false" onAction="#onClickReturn" prefWidth="40.0" text="←">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Button>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                  <VBox alignment="CENTER" prefHeight="110.0" prefWidth="533.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label fx:id="titleVisuAdmin" text="Titre de la tâche">
+                        <Label fx:id="titleVisuAdmin" alignment="CENTER" contentDisplay="CENTER" prefHeight="53.0" prefWidth="595.0" text="Titre de la tâche">
                            <font>
                               <Font size="36.0" />
                            </font>

@@ -61,12 +61,12 @@ public class DeposerController {
     @FXML
     private Button exeButton;
 
-    private TranslateTransition anim =new TranslateTransition();
-    private boolean admin=false;
+    private TranslateTransition anim = new TranslateTransition();
+    private boolean admin = false;
 
     @FXML
-    private void initialize(){
-        cBoxEmergencyId.getItems().addAll(1,2,3);
+    private void initialize() {
+        cBoxEmergencyId.getItems().addAll(1, 2, 3);
 
         for (EnumLocation l : EnumLocation.values()) {
             cBoxLocalisationId.getItems().add(l.toString());
@@ -77,8 +77,8 @@ public class DeposerController {
         wizz();
     }
 
-    public void setAdminMode(boolean b){
-        this.admin=b;
+    public void setAdminMode(boolean b) {
+        this.admin = b;
     }
 
     public void delete(MouseEvent mouseEvent) {
@@ -98,11 +98,11 @@ public class DeposerController {
     public void submit(MouseEvent mouseEvent) {
         String fxmlFile = "/fxml/list_incidents.fxml";
         FXMLLoader loader = new FXMLLoader();
-        if (titleTextId.getText().isEmpty() || whoTextId.getText().isEmpty() || hourTextId.getText().isEmpty() ||dateId.getValue() == null
-                || cBoxCategoryId.getValue()==null || cBoxEmergencyId.getValue()==null || cBoxLocalisationId.getValue()==null){
+        if (titleTextId.getText().isEmpty() || whoTextId.getText().isEmpty() || hourTextId.getText().isEmpty() || dateId.getValue() == null
+                || cBoxCategoryId.getValue() == null || cBoxEmergencyId.getValue() == null || cBoxLocalisationId.getValue() == null) {
             error.setVisible(true);
             anim.play();
-        }else {
+        } else {
             String title = titleTextId.getText();
             String who = whoTextId.getText();
             int emergency = cBoxEmergencyId.getValue();
@@ -111,7 +111,7 @@ public class DeposerController {
             String location = cBoxLocalisationId.getValue();
             String category = cBoxCategoryId.getSelectionModel().getSelectedItem();
             String description = descriptionId.getText();
-            Data.addTask(title,who,null,category,date,location,description,0,emergency);
+            Data.addTask(title, who, null, category, date, location, description, 0, emergency);
             try {
                 Stage stage = (Stage) exeButton.getScene().getWindow();
                 Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
@@ -126,20 +126,20 @@ public class DeposerController {
         }
     }
 
-    public void escapePressed(KeyEvent keyEvent) throws Exception{
-        if(keyEvent.getCode() == KeyCode.ESCAPE) {
+    public void escapePressed(KeyEvent keyEvent) throws Exception {
+        if (keyEvent.getCode() == KeyCode.ESCAPE) {
             backToList(new ActionEvent());
         }
     }
 
-    public void wizz(){
+    public void wizz() {
         TranslateTransition t = new TranslateTransition();
         t.setNode(error);
         t.setToX(-30);
         t.setAutoReverse(true);
         t.setCycleCount(6);
         t.setRate(4);
-        anim=t;
+        anim = t;
     }
 
     public void backToList(ActionEvent actionEvent) {

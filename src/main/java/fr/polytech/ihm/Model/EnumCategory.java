@@ -9,8 +9,8 @@ public enum EnumCategory {
 
     private String libelle;
 
-    EnumCategory(String lib){
-        this.libelle=lib;
+    EnumCategory(String lib) {
+        this.libelle = lib;
     }
 
     public String getLibelle() {

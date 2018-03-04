@@ -42,9 +42,9 @@ public class LoginController {
         this.accountCheck();
     }
 
-    private void accountCheck() throws Exception{
+    private void accountCheck() throws Exception {
         LoginCheck loginCheck = new LoginCheck(username.getText(), password.getText());
-        if(loginCheck.isAdmin() || loginCheck.isValid())
+        if (loginCheck.isAdmin() || loginCheck.isValid())
             this.loadView("/fxml/list_incidents.fxml", loginCheck.isAdmin());
         else {
             username.setText("");
@@ -54,7 +54,7 @@ public class LoginController {
         }
     }
 
-    private void loadView(String name, boolean isAdmin) throws Exception{
+    private void loadView(String name, boolean isAdmin) throws Exception {
         String fxmlFile = name;
         FXMLLoader loader = new FXMLLoader();
         try {
@@ -71,18 +71,18 @@ public class LoginController {
         }
     }
 
-    public void enterPressed(KeyEvent keyEvent) throws Exception{
-        if(keyEvent.getCode() == KeyCode.ENTER)
+    public void enterPressed(KeyEvent keyEvent) throws Exception {
+        if (keyEvent.getCode() == KeyCode.ENTER)
             this.accountCheck();
     }
 
-    public void wizz(){
+    public void wizz() {
         TranslateTransition t = new TranslateTransition();
         t.setNode(errorText);
         t.setToX(-30);
         t.setAutoReverse(true);
         t.setCycleCount(6);
         t.setRate(4);
-        anim=t;
+        anim = t;
     }
 }

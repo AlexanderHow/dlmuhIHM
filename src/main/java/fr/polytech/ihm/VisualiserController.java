@@ -72,15 +72,16 @@ public class VisualiserController {
     @FXML
     private TextField reassignField;
 
-    @FXML Button reassignButton;
+    @FXML
+    Button reassignButton;
 
     private Task task;
-    private boolean alreadyUpvoted=false;
-    private boolean adminMode=false;
+    private boolean alreadyUpvoted = false;
+    private boolean adminMode = false;
 
     @FXML
-    public void initialize(){
-        if(!adminMode){
+    public void initialize() {
+        if (!adminMode) {
             this.resolvedVisuAdmin.setDisable(true);
             this.resolvedVisuAdmin.setVisible(false);
             this.reassignButton.setDisable(true);
@@ -91,20 +92,20 @@ public class VisualiserController {
         this.refresh();
     }
 
-    private void refresh(){
-        if(this.task!=null){
-            if(task.resolvedProperty().get()==1) {
+    private void refresh() {
+        if (this.task != null) {
+            if (task.resolvedProperty().get() == 1) {
                 retroButton.setVisible(false);
             }
             this.titleVisuAdmin.setText(" " + this.task.titleProperty().get());
-            this.authorVisuAdmin.setText(" "+this.task.authorProperty().get());
-            this.assigneeVisuAdmin.setText(this.task.assigneeProperty().get()!=null ? " "+this.task.assigneeProperty().get() : " Personne");
-            this.categoryVisuAdmin.setText(" "+this.task.categoryProperty().get());
-            this.dateVisuAdmin.setText(" "+this.task.dateProperty().get());
-            this.locationVisuAdmin.setText(" "+this.task.locationProperty().get());
+            this.authorVisuAdmin.setText(" " + this.task.authorProperty().get());
+            this.assigneeVisuAdmin.setText(this.task.assigneeProperty().get() != null ? " " + this.task.assigneeProperty().get() : " Personne");
+            this.categoryVisuAdmin.setText(" " + this.task.categoryProperty().get());
+            this.dateVisuAdmin.setText(" " + this.task.dateProperty().get());
+            this.locationVisuAdmin.setText(" " + this.task.locationProperty().get());
             this.descriptionVisuAdmin.setText(this.task.descriptionProperty().get());
             //this.displayUpvoteVisuAdmin.setText("+"+this.task.upvoteProperty().toString());
-            this.displayUpvoteVisuAdmin.textProperty().bindBidirectional(this.task.upvoteProperty(),new NumberStringConverter());
+            this.displayUpvoteVisuAdmin.textProperty().bindBidirectional(this.task.upvoteProperty(), new NumberStringConverter());
             Image emergencyLevel;
             switch (task.getEmergencyLvl()) {
                 case 1:
@@ -119,20 +120,20 @@ public class VisualiserController {
                     emergencyLevel = new Image("/images/red.png");
                     imgEmergencyVisuAdmin.setImage(emergencyLevel);
             }
-        }else{
+        } else {
             //TODO : gest error
             this.titleVisuAdmin.setText("Title Task: Error");
         }
     }
 
-    public void setTask(Task t){
-        this.task=t;
+    public void setTask(Task t) {
+        this.task = t;
         this.refresh();
     }
 
-    public void setAdminMode(boolean admin){
-        this.adminMode=admin;
-        if(adminMode){
+    public void setAdminMode(boolean admin) {
+        this.adminMode = admin;
+        if (adminMode) {
             this.resolvedVisuAdmin.setDisable(false);
             this.resolvedVisuAdmin.setVisible(true);
             this.reassignField.setDisable(false);
@@ -148,7 +149,7 @@ public class VisualiserController {
         String fxmlFile = "/fxml/list_incidents.fxml";
         FXMLLoader loader = new FXMLLoader();
         try {
-            Stage stage=(Stage) returnVisuAdmin.getScene().getWindow();
+            Stage stage = (Stage) returnVisuAdmin.getScene().getWindow();
             Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
             IncidentController controller = loader.<IncidentController>getController();
             controller.setAdminMode(adminMode);
@@ -161,21 +162,21 @@ public class VisualiserController {
     }
 
     @FXML
-    public void onClickUpvote(MouseEvent mouseEvent){
-        if(!alreadyUpvoted){
+    public void onClickUpvote(MouseEvent mouseEvent) {
+        if (!alreadyUpvoted) {
             this.task.upvoteTask();
-            this.alreadyUpvoted=true;
+            this.alreadyUpvoted = true;
             this.upvoteVisuAdmin.setText("Downvote");
-        }else{
+        } else {
             this.task.downvoteTask();
-            this.alreadyUpvoted=false;
+            this.alreadyUpvoted = false;
             this.upvoteVisuAdmin.setText("Upvote");
         }
     }
 
     @FXML
-    public void onClickDelete(MouseEvent mouseEvent){
-        if(adminMode){
+    public void onClickDelete(MouseEvent mouseEvent) {
+        if (adminMode) {
             this.task.deleteTask();
         }
         onClickReturn(new ActionEvent());
@@ -200,13 +201,13 @@ public class VisualiserController {
     public void reassign(ActionEvent actionEvent) {
         String who = reassignField.getText().toString();
         task.reassign(who);
-        assigneeVisuAdmin.setText(" "+who);
+        assigneeVisuAdmin.setText(" " + who);
         reassignField.setText("");
 
     }
 
     public void escapePressed(KeyEvent keyEvent) {
-        if(keyEvent.getCode() == KeyCode.ESCAPE) {
+        if (keyEvent.getCode() == KeyCode.ESCAPE) {
             onClickReturn(new ActionEvent());
         }
     }
