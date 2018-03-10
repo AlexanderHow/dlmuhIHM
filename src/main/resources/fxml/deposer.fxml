@@ -12,11 +12,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#escapePressed" prefHeight="611.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.polytech.ihm.DeposerController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#escapePressed" prefHeight="611.0" prefWidth="502.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.polytech.ihm.DeposerController">
   <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <center>
-            <VBox alignment="CENTER" prefHeight="516.0" prefWidth="335.0" spacing="30.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" prefHeight="595.0" prefWidth="420.0" spacing="25.0" BorderPane.alignment="CENTER">
                <children>
                   <Label alignment="CENTER" prefHeight="23.0" prefWidth="369.0" text="Ajout/Modification de ticket">
                      <font>
