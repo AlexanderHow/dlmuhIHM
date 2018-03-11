@@ -1,13 +1,10 @@
 package fr.polytech.ihm;
 
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import fr.polytech.ihm.Model.Data;
 import fr.polytech.ihm.Model.EnumCategory;
 import fr.polytech.ihm.Model.EnumLocation;
 import fr.polytech.ihm.Model.Task;
 import javafx.animation.TranslateTransition;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,17 +16,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -99,6 +91,7 @@ public class IncidentController {
             hbox.getChildren().addAll(vBox, vBox2);
             hbox.setHgrow(vBox, Priority.ALWAYS);
             hbox.setHgrow(vBox2, Priority.ALWAYS);
+            hbox.getStyleClass().add("cellContent");
             goNext.setOnAction(e -> {
                 getItem().incrementResolved();
                 String fxmlFile = "/fxml/list_incidents.fxml";
@@ -109,6 +102,7 @@ public class IncidentController {
                         ic.getLocationIncident().getSelectionModel().getSelectedItem());
 
             });
+            goNext.getStyleClass().add("nextButton");
         }
 
         public void updateItem(Task task, boolean empty) {
