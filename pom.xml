@@ -71,6 +71,12 @@
             <version>2.6</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.aquafx-project</groupId>
+            <artifactId>aquafx</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+
         <!-- Logging  -->
 
         <dependency>

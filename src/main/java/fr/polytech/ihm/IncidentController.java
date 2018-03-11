@@ -1,13 +1,10 @@
 package fr.polytech.ihm;
 
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import fr.polytech.ihm.Model.Data;
 import fr.polytech.ihm.Model.EnumCategory;
 import fr.polytech.ihm.Model.EnumLocation;
 import fr.polytech.ihm.Model.Task;
 import javafx.animation.TranslateTransition;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,17 +16,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -67,9 +59,9 @@ public class IncidentController {
     private ObservableList<Task> inProgressItems = FXCollections.observableArrayList(Data.getInstance().getDataInProgress());
     private ObservableList<Task> doneItems = FXCollections.observableArrayList(Data.getInstance().getDataDone());
     private TranslateTransition anim;
-    private String filterLocation="";
-    private String filterCategory="";
-    private String filterSearch="";
+    private String filterLocation = "";
+    private String filterCategory = "";
+    private String filterSearch = "";
 
 
     static class Cell extends ListCell<Task> {
@@ -99,16 +91,18 @@ public class IncidentController {
             hbox.getChildren().addAll(vBox, vBox2);
             hbox.setHgrow(vBox, Priority.ALWAYS);
             hbox.setHgrow(vBox2, Priority.ALWAYS);
+            hbox.getStyleClass().add("cellContent");
             goNext.setOnAction(e -> {
                 getItem().incrementResolved();
                 String fxmlFile = "/fxml/list_incidents.fxml";
                 FXMLLoader loader = new FXMLLoader();
 
                 ic.matching(ic.getSearchBar().getText(),
-                       ic.getCategoryIncident().getSelectionModel().getSelectedItem(),
+                        ic.getCategoryIncident().getSelectionModel().getSelectedItem(),
                         ic.getLocationIncident().getSelectionModel().getSelectedItem());
 
             });
+            goNext.getStyleClass().add("nextButton");
         }
 
         public void updateItem(Task task, boolean empty) {
@@ -165,14 +159,14 @@ public class IncidentController {
         listViewDone.setCellFactory(param -> new Cell(this));
 
         this.categoryIncident.setOnAction((event -> {
-            this.filterCategory=this.categoryIncident.getSelectionModel().getSelectedItem();
-            this.matching(this.filterSearch,this.filterCategory,this.filterLocation);
+            this.filterCategory = this.categoryIncident.getSelectionModel().getSelectedItem();
+            this.matching(this.filterSearch, this.filterCategory, this.filterLocation);
 
         }));
 
         this.locationIncident.setOnAction((event -> {
-            this.filterLocation=this.locationIncident.getSelectionModel().getSelectedItem();
-            this.matching(this.filterSearch,this.filterCategory,this.filterLocation);
+            this.filterLocation = this.locationIncident.getSelectionModel().getSelectedItem();
+            this.matching(this.filterSearch, this.filterCategory, this.filterLocation);
 
         }));
 
@@ -231,7 +225,7 @@ public class IncidentController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }else{
+        } else {
             if (listViewToDo.getItems().isEmpty()) {
                 arrow.setVisible(true);
                 anim.play();
@@ -260,7 +254,7 @@ public class IncidentController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }else {
+        } else {
             if (listViewDone.getItems().isEmpty()) {
                 arrow.setVisible(true);
                 anim.play();
@@ -289,8 +283,8 @@ public class IncidentController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }else{
-            if(listViewInProgress.getItems().isEmpty()) {
+        } else {
+            if (listViewInProgress.getItems().isEmpty()) {
                 arrow.setVisible(true);
                 anim.play();
                 anim.setOnFinished(event1 -> {
@@ -302,20 +296,20 @@ public class IncidentController {
 
     @FXML
     void matchSearchAndData(KeyEvent event) {
-        if(event.getCode()== KeyCode.ENTER){
-            this.filterSearch=searchBar.getText();
-            this.matching(this.filterSearch,this.filterCategory,this.filterLocation);
+        if (event.getCode() == KeyCode.ENTER) {
+            this.filterSearch = searchBar.getText();
+            this.matching(this.filterSearch, this.filterCategory, this.filterLocation);
         }
     }
 
-    private void matching(String search, String category, String location){
-        this.toDoItems=FXCollections.observableArrayList(Data.getInstance().getDataFiltered(1,search,category,location));
-        this.inProgressItems=FXCollections.observableArrayList(Data.getInstance().getDataFiltered(2,search,category,location));
-        this.doneItems=FXCollections.observableArrayList(Data.getInstance().getDataFiltered(3,search,category,location));
+    private void matching(String search, String category, String location) {
+        this.toDoItems = FXCollections.observableArrayList(Data.getInstance().getDataFiltered(1, search, category, location));
+        this.inProgressItems = FXCollections.observableArrayList(Data.getInstance().getDataFiltered(2, search, category, location));
+        this.doneItems = FXCollections.observableArrayList(Data.getInstance().getDataFiltered(3, search, category, location));
         this.refreshData();
     }
 
-    public void refreshData(){
+    public void refreshData() {
         this.listViewToDo.setItems(toDoItems);
         this.listViewToDo.setCellFactory(param -> new Cell(this));
 
@@ -342,7 +336,7 @@ public class IncidentController {
         this.adminMode = b;
     }
 
-    public void arrowMove(){
+    public void arrowMove() {
 
         TranslateTransition t = new TranslateTransition();
         t.setNode(arrow);
@@ -350,7 +344,7 @@ public class IncidentController {
         t.setAutoReverse(true);
         t.setCycleCount(6);
         t.setRate(4);
-        anim=t;
+        anim = t;
 
     }
 }

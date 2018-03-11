@@ -2,25 +2,97 @@
 
 .label {
     -fx-font-size: 12px;
-    -fx-font-weight: bold;
     -fx-text-fill: #333333;
-    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.5), 0, 0, 0, 1);
 }
 
 .button {
+    -fx-padding: 0.5em 16px;
+    -fx-border: none rgba(0, 0, 0, 0);
+    -fx-background-color: #2b98f0;
+    -fx-text-decoration: none;
+    -fx-border-radius: 2px;
     -fx-text-fill: white;
-    -fx-font-family: "Arial Narrow";
-    -fx-font-weight: bold;
-    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
 
-.button:hover{
-    -fx-base: #395bae;
+.button:hover {
+    -fx-background-color: #3498db;
 }
+
+.button:focused {
+    -fx-background-color: #49a2e4;
+}
+
+.text-field {
+    -fx-background-color: -fx-text-box-border, -fx-background;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-background-radius: 0;
+}
+
+.text-field:focused {
+    -fx-background-color: #2b98f0, -fx-background;
+    -fx-text-fill: #2b98f0;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-background-radius: 0;
+
+}
+
+.combo-box-base {
+    -fx-background-color: -fx-text-box-border, -fx-background;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-background-radius: 0;
+}
+
+.combo-box-base:focused, .combo-box-base:hover {
+    -fx-background-color: #2b98f0, -fx-background;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-background-radius: 0;
+}
+.combo-box-base .arrow-button {
+    -fx-background-color: transparent;
+}
+
 
 /* Component specific styles */
 
+#decoButton {
+    -fx-background-color: #e0e0e0;
+    -fx-text-fill: black;
+}
+
+#decoButton:hover {
+    -fx-background-color: #d5d5d5;
+}
+
+#decoButton:focused {
+    -fx-background-color: #d6d6d6;
+}
+
+.nextButton {
+    -fx-background-color: transparent;
+    -fx-text-fill: #2b98f0;
+}
+
+.nextButton:hover {
+    -fx-background-color: #e8e8e8;
+    -fx-text-fill: #3498db;
+}
+
+.nextButton:focused {
+    -fx-background-color: #d3d3d3;
+    -fx-text-fill: #3498db;
+}
+
+.nextButton:pressed {
+    -fx-background-color: #cccccc;
+    -fx-text-fill: #3498db;
+}
+
+.cellContent {
+    -fx-padding: 8;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.12), 3, 0, 0, 1);
+    -fx-background-color: rgb(255, 255, 255);
+}
 
 .main-panel {
     -fx-background-image: url("../images/background.jpg");
@@ -29,6 +101,5 @@
 .hello-message {
     -fx-text-fill: #AA0000;
     -fx-font-weight: bold;
-    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.5), 0, 0, 0, 1);
 }
-

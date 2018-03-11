@@ -1,165 +1,158 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#escapePressed" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.polytech.ihm.VisualiserController">
-   <children>
-      <VBox layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-               <children>
-                  <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-                     <children>
-                        <Button fx:id="returnVisuAdmin" mnemonicParsing="false" onAction="#onClickReturn" text="←">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-                     <children>
-                        <Label fx:id="titleVisuAdmin" text="Titre de la tâche">
-                           <font>
-                              <Font size="36.0" />
-                           </font>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            onKeyPressed="#escapePressed" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.121"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.polytech.ihm.VisualiserController">
+    <children>
+        <VBox layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0"
+              AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0"
+              AnchorPane.topAnchor="0.0">
+            <children>
+                <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                    <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Button fx:id="returnVisuAdmin" mnemonicParsing="false" onAction="#onClickReturn"
+                                        text="←">
+                                    <font>
+                                        <Font size="18.0"/>
+                                    </font>
+                                </Button>
+                            </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label fx:id="titleVisuAdmin" text="Titre de la tâche">
+                                    <font>
+                                        <Font size="36.0"/>
+                                    </font>
+                                </Label>
+                            </children>
+                        </VBox>
+                        <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                            <children>
+                                <ImageView fx:id="imgEmergencyVisuAdmin" fitHeight="100.0" fitWidth="100.0"
+                                           pickOnBounds="true" preserveRatio="true"/>
+                            </children>
+                            <HBox.margin>
+                                <Insets right="5.0" top="5.0"/>
+                            </HBox.margin>
+                        </VBox>
+                    </children>
+                </HBox>
+                <GridPane alignment="CENTER" maxWidth="1000.0">
+                    <columnConstraints>
+                        <ColumnConstraints/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="32.0" minWidth="32.0" prefWidth="32.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES"/>
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES"/>
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES"/>
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES"/>
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    </rowConstraints>
+                    <children>
+                        <Label text="Auteur :" underline="true">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
                         </Label>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-                     <children>
-                        <ImageView fx:id="imgEmergencyVisuAdmin" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
-                     </children>
-                     <HBox.margin>
-                        <Insets right="5.0" top="5.0" />
-                     </HBox.margin>
-                  </VBox>
-               </children>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" VBox.vgrow="ALWAYS">
-               <children>
-                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" HBox.hgrow="ALWAYS">
-                     <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label text="Auteur :" underline="true">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="authorVisuAdmin" text="Auteur">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label text="Assigné :" underline="true">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="assigneeVisuAdmin" text="Assigné">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="reassignField">
-                                 <HBox.margin>
-                                    <Insets left="30.0" right="15.0" />
-                                 </HBox.margin>
-                              </TextField>
-                              <Button fx:id="reassignButton" mnemonicParsing="false" onAction="#reassign" text="Réassigner" />
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label text="Catégorie :" underline="true">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="categoryVisuAdmin" text="Catégorie">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
-                  <Separator orientation="VERTICAL" prefHeight="200.0" />
-                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" HBox.hgrow="ALWAYS">
-                     <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label text="Date :" underline="true">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="dateVisuAdmin" text="Date">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label text="Lieu :" underline="true">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="locationVisuAdmin" text="Lieu">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
-            <Label text="Informations complémentaires:" underline="true">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <TextArea fx:id="descriptionVisuAdmin" onMouseClicked="#supprSaveDisplay" prefHeight="187.0" prefWidth="293.0">
-               <font>
-                  <Font size="22.0" />
-               </font></TextArea>
-            <HBox alignment="CENTER" prefHeight="45.0" prefWidth="880.0" spacing="10.0" VBox.vgrow="ALWAYS">
-               <children>
-                  <Label fx:id="displayUpvoteVisuAdmin" text="Label" />
-                  <Button fx:id="upvoteVisuAdmin" mnemonicParsing="false" onMouseClicked="#onClickUpvote" text="Upvote" HBox.hgrow="ALWAYS" />
-                  <Button fx:id="retroButton" mnemonicParsing="false" onAction="#retrograde" text="Rétrograder" />
-                  <Button fx:id="saveButton" mnemonicParsing="false" onMouseClicked="#saveDescription" text="Sauvegarder les informations complémentaires" />
-                  <Text fx:id="saveText" fill="#22d019" strokeType="OUTSIDE" strokeWidth="0.0" text="Saved" visible="false" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="51.0" prefWidth="880.0" spacing="10.0">
-               <children>
-                  <Button fx:id="resolvedVisuAdmin" mnemonicParsing="false" onMouseClicked="#onClickDelete" text="Supprimer l'incident" />
-               </children>
-            </HBox>
-         </children>
-      </VBox>
-   </children>
+                        <Label fx:id="authorVisuAdmin" text="Auteur" GridPane.columnIndex="2">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                        <Label text="Assigné :" underline="true" GridPane.rowIndex="2">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                        <Label fx:id="assigneeVisuAdmin" text="Assigné" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                        <TextField fx:id="reassignField" GridPane.columnIndex="4" GridPane.rowIndex="2"/>
+                        <Button fx:id="reassignButton" mnemonicParsing="false" onAction="#reassign" text="Réassigner"
+                                GridPane.columnIndex="6" GridPane.rowIndex="2"/>
+                        <Label text="Catégorie :" underline="true" GridPane.rowIndex="4">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                        <Label fx:id="categoryVisuAdmin" text="Catégorie" GridPane.columnIndex="2"
+                               GridPane.rowIndex="4">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                        <Label text="Date :" underline="true" GridPane.rowIndex="6">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                        <Label fx:id="dateVisuAdmin" text="Date" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                        <Label text="Lieu :" underline="true" GridPane.rowIndex="8">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                        <Label fx:id="locationVisuAdmin" text="Lieu" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                    </children>
+                </GridPane>
+                <Label text="Informations complémentaires:" underline="true">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Label>
+                <TextArea fx:id="descriptionVisuAdmin" onMouseClicked="#supprSaveDisplay" prefHeight="187.0"
+                          prefWidth="293.0">
+                    <font>
+                        <Font size="22.0"/>
+                    </font>
+                </TextArea>
+                <HBox alignment="CENTER" prefHeight="45.0" prefWidth="880.0" spacing="10.0" VBox.vgrow="ALWAYS">
+                    <children>
+                        <Label fx:id="displayUpvoteVisuAdmin" text="Label"/>
+                        <Button fx:id="upvoteVisuAdmin" mnemonicParsing="false" onMouseClicked="#onClickUpvote"
+                                text="Upvote" HBox.hgrow="ALWAYS"/>
+                        <Button fx:id="retroButton" mnemonicParsing="false" onAction="#retrograde" text="Rétrograder"/>
+                        <Button fx:id="saveButton" mnemonicParsing="false" onMouseClicked="#saveDescription"
+                                text="Sauvegarder les informations complémentaires"/>
+                        <Text fx:id="saveText" fill="#22d019" strokeType="OUTSIDE" strokeWidth="0.0" text="Saved"
+                              visible="false"/>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="51.0" prefWidth="880.0" spacing="10.0">
+                    <children>
+                        <Button fx:id="resolvedVisuAdmin" mnemonicParsing="false" onMouseClicked="#onClickDelete"
+                                text="Supprimer l'incident"/>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
 </AnchorPane>

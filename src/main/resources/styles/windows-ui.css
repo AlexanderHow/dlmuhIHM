@@ -1,0 +1,75 @@
+/* JMetro css jfextra with modifications */
+.button {
+    -fx-padding: 0.5em 1em;
+    -fx-background-radius: 0;
+    -fx-background-color: #cccccc;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 2px;
+    -fx-text-fill: black;
+}
+
+.button:hover {
+    -fx-border-color: #909090;
+}
+
+.button:pressed, .button:default:hover:pressed {
+    -fx-background-color: #818181;
+}
+
+.button:default {
+    -fx-background-color: #008287;
+    -fx-text-fill: #ffffff;
+}
+
+.button:default:hover {
+    -fx-background-color: #219297;
+}
+
+.text-field {
+    -fx-background-color: white;
+    -fx-border-width: 2px;
+    -fx-border-color: #bababa;
+    -fx-background-radius: 0;
+}
+
+.text-field:focused {
+    -fx-background-color: white;
+    -fx-border-width: 2px;
+    -fx-border-color: #909090;
+}
+
+#dateId {
+    -fx-border-width: 0;
+}
+
+#dateId .arrow-button {
+    -fx-background-color: #d4d4d4;
+    -fx-border-color: #d4d4d4;
+}
+
+.combo-box-base {
+    -fx-background-color: white;
+    -fx-border-width: 2px;
+    -fx-border-color: #bababa;
+    -fx-background-radius: 0, 0, 0, 0;
+}
+
+.combo-box-base:focused, .combo-box-base:hover {
+    -fx-background-color: white;
+    -fx-border-width: 2px;
+    -fx-border-color: #909090;
+}
+
+.combo-box-base .arrow-button {
+    -fx-background-color: transparent, transparent, white;
+}
+
+.combo-box-base .arrow {
+    -fx-shape: "M8.124,13.625l4.125-3.375v2.889l-4.125,3.86L4,13.139V10.25L8.124,13.625z";
+}
+
+.cellContent {
+    -fx-padding: 8;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.12), 3, 0, 0, 1);
+    -fx-background-color: rgb(255, 255, 255);
+}

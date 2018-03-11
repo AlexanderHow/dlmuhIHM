@@ -1,5 +1,6 @@
 package fr.polytech.ihm;
 
+import com.sun.javafx.css.StyleManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,6 +19,16 @@ public class MainApp extends Application {
     }
 
     public void start(Stage stage) throws Exception {
+        /* MacOS theme (old versions) */
+        //AquaFx.style();
+
+        Application.setUserAgentStylesheet(Application.STYLESHEET_MODENA);
+
+        /* Current theme: Material design-like */
+        StyleManager.getInstance().addUserAgentStylesheet("/styles/styles.css");
+
+        /* Windows theme */
+        //StyleManager.getInstance().addUserAgentStylesheet("/styles/windows-ui.css");
 
         log.info("Starting Hello JavaFX and Maven demonstration application");
 
