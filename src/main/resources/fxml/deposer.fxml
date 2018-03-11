@@ -4,12 +4,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<BorderPane prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1"
+<BorderPane prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="fr.polytech.ihm.DeposerController">
     <center>
         <VBox alignment="CENTER" prefHeight="516.0" prefWidth="335.0" spacing="30.0" BorderPane.alignment="CENTER">
             <children>
-                <Label alignment="CENTER" prefHeight="23.0" prefWidth="369.0" text="Ajout/Modification de ticket">
+                <Label alignment="CENTER" prefHeight="23.0" prefWidth="369.0" text="Ajout de ticket">
                     <font>
                         <Font name="Castellar" size="17.0"/>
                     </font>
